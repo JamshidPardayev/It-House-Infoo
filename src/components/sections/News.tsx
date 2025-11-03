@@ -1,0 +1,103 @@
+import { motion } from "motion/react";
+import { Calendar, ArrowRight } from "lucide-react";
+import { useNews } from "../../api/hooks/useNews";
+import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+
+export const News = () => {
+  const { data, isLoading, isError } = useNews();
+  const navigate = useNavigate();
+
+  if (isLoading)
+    return <div className="flex justify-center py-20">Yuklanmoqda...</div>;
+  if (isError)
+    return (
+      <div className="flex justify-center py-20 text-red-500">
+        Xatolik yuz berdi
+      </div>
+    );
+
+  if (!data || data.length === 0)
+    return (
+      <div className="flex justify-center py-20 text-gray-500">
+        Hozircha yangiliklar mavjud emas
+      </div>
+    );
+
+  return (
+    <section className="py-32 bg-gradient-to-b from-gray-100 dark:from-black to-white dark:to-gray-900">
+      <div className="max-w-7xl mx-auto px-4 text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          So'nggi <span className="text-orange-600">Yangiliklar</span>
+        </h2>
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          IT_HOUSE markazi va o'quvchilar hayotidan eng so'nggi yangiliklardan
+          xabardor bo'ling
+        </p>
+      </div>
+
+      <Swiper
+        modules={[Autoplay]}
+        loop={true}
+        autoplay={{
+          delay: 0,
+          disableOnInteraction: false,
+        }}
+        speed={15000}
+        slidesPerView={3}
+        spaceBetween={32}
+        grabCursor={true}
+        breakpoints={{
+          0: { slidesPerView: 1.2, spaceBetween: 16 },
+          640: { slidesPerView: 1.5, spaceBetween: 20 },
+          768: { slidesPerView: 2, spaceBetween: 24 },
+          1024: { slidesPerView: 2.5, spaceBetween: 28 },
+          1280: { slidesPerView: 3, spaceBetween: 32 },
+        }}
+      >
+        {data.map((news) => (
+          <SwiperSlide key={news.id} style={{ width: 400 }}>
+            <motion.div
+              className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+              onClick={() => navigate(`/news/${news.id}`)}
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={news.banner}
+                  alt={news.title_uz}
+                  className="w-full h-full object-cover hover:scale-105 duration-300"
+                />
+                <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white text-sm bg-black/40 px-2 py-1 rounded">
+                  <Calendar className="w-4 h-4" />
+                  <span>{news.created_at.split("T")[0]}</span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-4 flex flex-col justify-between h-[200px]">
+                <div>
+                  <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white line-clamp-1">
+                    {news.title_uz}
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-300 text-sm line-clamp-2">
+                    {news.description_uz}
+                  </p>
+                </div>
+                <motion.button
+                  whileHover={{ x: 5 }}
+                  className="mt-4 text-orange-500 hover:text-orange-400 flex items-center gap-2"
+                  onClick={() => navigate(`/news/${news.id}`)}
+                >
+                  Batafsil o'qish
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </div>
+            </motion.div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </section>
+  );
+};
