@@ -5,8 +5,8 @@ import { motion } from "motion/react";
 import { Linkedin, Github } from "lucide-react";
 
 const TeacherDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const teacherId = id ? Number(id) : undefined;
+  const { id } = useParams();
+  const teacherId = Number(id);
 
   const { data: teacher, isLoading, isError } = useTeacherDetail(teacherId);
 
