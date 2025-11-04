@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { Clock, Users, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import { useState } from "react";
 import { useCourses } from "../../api/hooks/useCourses";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -26,8 +25,6 @@ type CourseType = {
 };
 
 export function Courses() {
-  const [selectedCourse] = useState<CourseType | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
   const { data, isLoading, isError } = useCourses();
   const navigate = useNavigate();
   if (isLoading)
@@ -205,13 +202,6 @@ export function Courses() {
         </motion.div>
       </div>
 
-      {/* Modal */}
-      {isOpen && selectedCourse && (
-        <CourseDetailModal
-          onClose={() => setIsOpen(false)}
-          courseId={selectedCourse.id}
-        />
-      )}
     </section>
   );
 }

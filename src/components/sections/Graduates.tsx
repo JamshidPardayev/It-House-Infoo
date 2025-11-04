@@ -137,7 +137,7 @@ export function Graduates() {
           </h3>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {companiesData?.map((company, index) => (
+            {companiesData?.map((company: any, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}
