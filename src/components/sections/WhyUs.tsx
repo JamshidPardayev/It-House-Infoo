@@ -33,7 +33,7 @@ export function WhyUs() {
   return (
     <section
       id="whyus"
-      className="py-32 bg-gray-50 dark:bg-black relative overflow-hidden transition-colors duration-300"
+      className="py-24 bg-gray-50 dark:bg-black relative overflow-hidden transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Sarlavha qismi */}

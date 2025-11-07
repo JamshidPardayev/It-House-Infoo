@@ -1,6 +1,15 @@
-import { motion } from 'motion/react';
-import { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle, Instagram, Youtube, Send as Telegram } from 'lucide-react';
+import { motion } from "motion/react";
+import { useState } from "react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Send,
+  CheckCircle,
+  Instagram,
+  Youtube,
+  Send as Telegram,
+} from "lucide-react";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -12,7 +21,10 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 bg-gradient-to-b from-gray-50 dark:from-black to-white dark:to-gray-900 relative overflow-hidden transition-colors duration-300">
+    <section
+      id="contact"
+      className="py-10 bg-gradient-to-b from-gray-50 dark:from-black to-white dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -28,7 +40,7 @@ export function Contact() {
           >
             <span className="text-blue-500">Bog'lanish</span>
           </motion.div>
-          
+
           <h2 className="text-black dark:text-white mb-6">
             Bugun <span className="text-blue-600">Boshlang</span>
           </h2>
@@ -44,7 +56,10 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="bg-gradient-to-br shadow-lg dark:shadow-none from-blue-100 to-red-100 dark:from-white/5 dark:to-white/10 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-gradient-to-br shadow-lg dark:shadow-none from-blue-100 to-red-100 dark:from-white/5 dark:to-white/10 backdrop-blur-sm border border-white/10 rounded-3xl p-8"
+            >
               <div className="space-y-6">
                 <div>
                   <input
@@ -110,9 +125,13 @@ export function Contact() {
             {/* Contact Details */}
             <div className="space-y-6">
               {[
-                { icon: Phone, label: 'Telefon', value: '+998 90 123 45 67' },
-                { icon: Mail, label: 'Email', value: 'info@ithouse.uz' },
-                { icon: MapPin, label: 'Manzil', value: 'Toshkent sh., Chilonzor tumani' },
+                { icon: Phone, label: "Telefon", value: "+998 90 123 45 67" },
+                { icon: Mail, label: "Email", value: "info@ithouse.uz" },
+                {
+                  icon: MapPin,
+                  label: "Manzil",
+                  value: "Toshkent sh., Chilonzor tumani",
+                },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -126,7 +145,9 @@ export function Contact() {
                     <item.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">{item.label}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">
+                      {item.label}
+                    </p>
                     <p className="dark:text-white">{item.value}</p>
                   </div>
                 </motion.div>
@@ -138,13 +159,30 @@ export function Contact() {
               <h3 className="dark:text-white mb-6">Ijtimoiy Tarmoqlar</h3>
               <div className="flex gap-4">
                 {[
-                  { icon: Telegram, name: 'Telegram', color: 'from-blue-500 to-cyan-500' },
-                  { icon: Instagram, name: 'Instagram', color: 'from-pink-500 to-rose-500' },
-                  { icon: Youtube, name: 'YouTube', color: 'from-red-500 to-red-600' },
+                  {
+                    icon: Telegram,
+                    name: "Telegram",
+                    color: "from-blue-500 to-cyan-500",
+                    link: "https://t.me/JamshidPardayev",
+                  },
+                  {
+                    icon: Instagram,
+                    name: "Instagram",
+                    color: "from-pink-500 to-rose-500",
+                    link: "https://www.instagram.com/ithouse_edu/",
+                  },
+                  {
+                    icon: Youtube,
+                    name: "YouTube",
+                    color: "from-red-500 to-red-600",
+                    link: "https://youtu.be/9bGpGeH8zrw?si=kZL_XjagoVZ5QG-r",
+                  },
                 ].map((social, index) => (
                   <motion.a
                     key={index}
-                    href="#"
+                    href={social?.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.95 }}
                     className={`flex-1 bg-gradient-to-r ${social.color} p-4 rounded-xl flex flex-col items-center gap-2 text-white hover:shadow-lg transition-all`}
@@ -157,8 +195,6 @@ export function Contact() {
             </div>
           </motion.div>
         </div>
-
-       
       </div>
     </section>
   );

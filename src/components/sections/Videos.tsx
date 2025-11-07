@@ -7,7 +7,7 @@ export function Videos() {
   return (
     <section
       id="videos"
-      className="py-32 bg-white dark:bg-black transition-colors duration-300 overflow-hidden"
+      className="py-24 bg-white dark:bg-black transition-colors duration-300 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}

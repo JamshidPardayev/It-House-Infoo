@@ -22,7 +22,7 @@ export function ForWho() {
   return (
     <section
       id="forwho"
-      className="py-32 bg-gradient-to-b from-white dark:from-black to-gray-100 dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
+      className="py-24 bg-gradient-to-b from-white dark:from-black to-gray-100 dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
