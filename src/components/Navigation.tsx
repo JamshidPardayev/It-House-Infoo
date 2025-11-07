@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from "motion/react";
 import { Code2, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DarkModeToggle } from "./ThemeProvider";
-import { useNavigate } from "react-router-dom"; // 🧩 qo‘shildi
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface NavigationProps {
   scrolled: boolean;
@@ -11,6 +11,7 @@ interface NavigationProps {
 export function Navigation({ scrolled }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     { label: "Asosiy", href: "#hero" },
@@ -21,31 +22,47 @@ export function Navigation({ scrolled }: NavigationProps) {
     { label: "FAQ", href: "#faq" },
   ];
 
-  const scrollToSection = (href: string) => {
+  // Desktop scroll
+  const handleDesktopScroll = (href: string) => {
     const element = document.querySelector(href);
-
     if (element) {
       const yOffset = -80;
       const y =
         element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
-      setIsOpen(false);
     } else {
-      // 🧩 Agar boshqa sahifadamiz — avval bosh sahifaga navigate qilamiz
-      navigate("/");
-
-      // Sahifa yuklanishiga biroz vaqt beramiz, keyin scroll qilamiz
-      setTimeout(() => {
-        const target = document.querySelector(href);
-        if (target) {
-          const yOffset = -80;
-          const y =
-            target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        }
-      }, 400); // sahifa qayta chizilishi uchun kechikish (ms)
+      navigate("/", { state: { scrollTo: href } });
     }
   };
+
+  // Mobile scroll (biroz kutish bilan, menu ochilgandan keyin)
+  const handleMobileScroll = (href: string) => {
+    setIsOpen(false); // Menu yopish
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const yOffset = -80;
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      } else {
+        navigate("/", { state: { scrollTo: href } });
+      }
+    }, 150); // menu animation tugashini kutish
+  };
+
+  // Bosh sahifaga kelganda scroll qilish
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const target = document.querySelector(location.state.scrollTo);
+      if (target) {
+        const yOffset = -80;
+        const y =
+          target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   return (
     <motion.nav
@@ -63,7 +80,7 @@ export function Navigation({ scrolled }: NavigationProps) {
           <motion.div
             className="flex items-center gap-3 cursor-pointer group"
             whileHover={{ scale: 1.05 }}
-            onClick={() => scrollToSection("#hero")}
+            onClick={() => handleDesktopScroll("#hero")}
           >
             <div className="relative cursor-pointer">
               <div className="absolute inset-0 bg-red-600 blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
@@ -71,10 +88,7 @@ export function Navigation({ scrolled }: NavigationProps) {
                 <Code2 className="w-6 h-6 text-white cursor-pointer" />
               </div>
             </div>
-            <div
-              className="cursor-pointer"
-              onClick={() => scrollToSection("#hero")}
-            >
+            <div onClick={() => handleDesktopScroll("#hero")}>
               <span className="text-gray-900 dark:text-white block">
                 IT HOUSE
               </span>
@@ -87,7 +101,7 @@ export function Navigation({ scrolled }: NavigationProps) {
             {menuItems.map((item) => (
               <motion.button
                 key={item.href}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleDesktopScroll(item.href)}
                 className="px-4 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all text-sm cursor-pointer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -101,7 +115,7 @@ export function Navigation({ scrolled }: NavigationProps) {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => handleDesktopScroll("#contact")}
               className="ml-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2.5 rounded-lg hover:from-red-700 hover:to-red-800 transition-all shadow-lg shadow-red-600/30 cursor-pointer"
             >
               Bog'lanish
@@ -113,11 +127,7 @@ export function Navigation({ scrolled }: NavigationProps) {
             className="lg:hidden text-gray-900 dark:text-white cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? (
-              <X className="w-6 h-6 cursor-pointer" />
-            ) : (
-              <Menu className="w-6 h-6 cursor-pointer" />
-            )}
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
@@ -135,14 +145,14 @@ export function Navigation({ scrolled }: NavigationProps) {
               {menuItems.map((item) => (
                 <button
                   key={item.href}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleMobileScroll(item.href)}
                   className="block w-full text-left px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800/50 transition-all cursor-pointer"
                 >
                   {item.label}
                 </button>
               ))}
               <button
-                onClick={() => scrollToSection("#contact")}
+                onClick={() => handleMobileScroll("#contact")}
                 className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg hover:from-red-700 hover:to-red-800 transition-all mt-4 cursor-pointer"
               >
                 Bog'lanish

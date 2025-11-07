@@ -37,7 +37,10 @@ export function Teachers() {
     );
 
   return (
-    <section className="py-32 bg-gradient-to-b from-purple-50 dark:from-gray-900 to-gray-100 dark:to-black relative overflow-hidden transition-colors duration-300">
+    <section
+      id="teachers"
+      className="py-32 bg-gradient-to-b from-purple-50 dark:from-gray-900 to-gray-100 dark:to-black relative overflow-hidden transition-colors duration-300"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
