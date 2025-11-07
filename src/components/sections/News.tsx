@@ -1,27 +1,28 @@
 import { motion } from "motion/react";
 import { Calendar, ArrowRight } from "lucide-react";
 import { useNews } from "../../api/hooks/useNews";
-import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 export const News = () => {
   const { data, isLoading, isError } = useNews();
-  const navigate = useNavigate();
+  console.log(data);
 
   if (isLoading)
-    return <div className="flex justify-center py-20">Yuklanmoqda...</div>;
+    return (
+      <div className="flex justify-center py-20 z-[-100]">Yuklanmoqda...</div>
+    );
   if (isError)
     return (
-      <div className="flex justify-center py-20 text-red-500">
+      <div className="flex justify-center py-20 text-red-500 z-[-100]">
         Xatolik yuz berdi
       </div>
     );
 
   if (!data || data.length === 0)
     return (
-      <div className="flex justify-center py-20 text-gray-500">
+      <div className="flex justify-center py-20 text-gray-500 z-[-100]">
         Hozircha yangiliklar mavjud emas
       </div>
     );
@@ -60,8 +61,10 @@ export const News = () => {
         {data.map((news) => (
           <SwiperSlide key={news.id} style={{ width: 400 }}>
             <motion.div
-              className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg cursor-pointer"
-              onClick={() => navigate(`/news/${news.id}`)}
+              className="bg-white dark:bg-white/10 rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+              onClick={() =>
+                window.open(`/news/${news.id}`, "_blank", "noopener,noreferrer")
+              }
             >
               <div className="relative h-56 overflow-hidden">
                 <img
@@ -69,14 +72,21 @@ export const News = () => {
                   alt={news.title_uz}
                   className="w-full h-full object-cover hover:scale-105 duration-300"
                 />
-                <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white text-sm bg-black/40 px-2 py-1 rounded">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+
+                <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white text-sm px-2 py-1 rounded">
                   <Calendar className="w-4 h-4" />
                   <span>{news.created_at.split("T")[0]}</span>
                 </div>
+
+                {/* ✅ STATUS OBYEKTINI TO'G'RI CHIQARISH */}
+                <span className="absolute top-3 left-3 z-10 h-[32px] flex justify-center items-center bg-orange-600 text-white px-5 rounded-2xl">
+                  {news.status?.name_uz || "No status"}
+                </span>
               </div>
 
               {/* Content */}
-              <div className="p-4 flex flex-col justify-between h-[200px]">
+              <div className="py-4 px-8 flex flex-col justify-between h-[200px]">
                 <div>
                   <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white line-clamp-1">
                     {news.title_uz}
@@ -88,7 +98,13 @@ export const News = () => {
                 <motion.button
                   whileHover={{ x: 5 }}
                   className="mt-4 text-orange-500 hover:text-orange-400 flex items-center gap-2"
-                  onClick={() => navigate(`/news/${news.id}`)}
+                  onClick={() =>
+                    window.open(
+                      `/news/${news.id}`,
+                      "_blank",
+                      "noopener,noreferrer"
+                    )
+                  }
                 >
                   Batafsil o'qish
                   <ArrowRight className="w-4 h-4" />

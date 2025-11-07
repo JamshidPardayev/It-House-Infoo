@@ -7,14 +7,14 @@ export function ForWho() {
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center py-32 text-gray-500 dark:text-gray-300">
+      <div className="flex justify-center items-center py-32 text-gray-500 dark:text-gray-300 z-[-100]">
         Yuklanmoqda...
       </div>
     );
 
   if (isError)
     return (
-      <div className="flex justify-center items-center py-32 text-red-500">
+      <div className="flex justify-center items-center py-32 text-red-500 z-[-100]">
         Ma'lumotlarni yuklab bo‘lmadi
       </div>
     );
@@ -55,7 +55,7 @@ export function ForWho() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-white/5 to-white/10 hover:scale-[1.05] duration-300 shadow-md hover:shadow-lg hover:shadow-purple-300 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-purple-600/30 transition-all text-center cursor-pointer"
+              className="bg-gradient-to-br from-white/5 to-white/10 hover:scale-[1.05] duration-300 shadow-md hover:shadow-lg  backdrop-blur-sm border border-white/10 rounded-2xl p-8  transition-all text-center cursor-pointer"
             >
               <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 className="w-8 h-8 text-white" />

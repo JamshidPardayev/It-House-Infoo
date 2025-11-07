@@ -7,14 +7,14 @@ export function Hero() {
 
   if (isLoading)
     return (
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-[-100]">
         <p className="text-[20px] font-semibold text-gray-700">Loading...</p>
       </div>
     );
 
   if (isError)
     return (
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-[-100]">
         <p className="text-[20px] font-semibold text-red-500">
           Xatolik yuz berdi!
         </p>
@@ -181,27 +181,6 @@ export function Hero() {
               </p>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2 cursor-pointer"
-            onClick={() =>
-              document
-                .getElementById("courses")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            <motion.div className="w-1.5 h-3 bg-gradient-to-b from-red-600 to-purple-600 rounded-full" />
-          </motion.div>
         </motion.div>
       </div>
     </section>

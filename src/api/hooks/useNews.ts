@@ -12,6 +12,7 @@ export type NewsType = {
   description_ru: string;
   description_en: string;
   banner: string;
+  status: string;
 };
 
 // Get all news

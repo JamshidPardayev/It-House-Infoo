@@ -19,10 +19,10 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Layout />} />
+          </Route>
             <Route path="courses/:id" element={<CourseDetail />} />
             <Route path="teachers/:id" element={<TeacherDetail />} />
             <Route path="news/:id" element={<NewsDetail />} />
-          </Route>
         </Routes>
       </BrowserRouter>
     </StrictMode>

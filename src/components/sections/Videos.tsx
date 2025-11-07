@@ -1,12 +1,7 @@
-import { motion } from 'motion/react';
-import { Youtube } from 'lucide-react';
+import { motion } from "motion/react";
+import { Youtube } from "lucide-react";
 
-const videoList = [
-  "AeLA-3n3o_M",
-  "QVnLiqDZYeE",
-  "ECj-H1b1IrA",
-  "Q6MVX_ytfpY",
-];
+const videoList = ["AeLA-3n3o_M", "QVnLiqDZYeE", "ECj-H1b1IrA", "Q6MVX_ytfpY"];
 
 export function Videos() {
   return (

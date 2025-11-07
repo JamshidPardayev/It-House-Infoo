@@ -16,7 +16,7 @@ export function WhyUs() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex justify-center py-20 z-[-100]">
         <Loader2 className="animate-spin w-10 h-10 text-red-600" />
       </div>
     );
@@ -24,7 +24,7 @@ export function WhyUs() {
 
   if (isError) {
     return (
-      <div className="text-center text-red-500 py-10">
+      <div className="text-center text-red-500 py-10 z-[-100]">
         Ma'lumotlarni yuklashda xatolik yuz berdi 😔
       </div>
     );
@@ -51,9 +51,10 @@ export function WhyUs() {
           >
             <span className="text-red-500">Nima Uchun IT_HOUSE?</span>
           </motion.div>
-
-          <h2 className="text-black dark:text-white mb-6">
-            Biz <span className="text-red-600">Afzalliklarga</span> Egamiz
+          <h2 className="text-black dark:text-white mb-6 text-[20px] font-semibold">
+            Sizni
+            <span className="text-red-600"> Muvaffaqiyatga </span>
+            Olib Boramiz
           </h2>
         </motion.div>
 
@@ -65,10 +66,10 @@ export function WhyUs() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-transparent dark:bg-linear-to-b dark:from-white/5 dark:to-white/10 hover:translate-y-[-10px] duration-300 border-none shadow-[inset_0_4px_8px_rgba(0,0,0,0.05),_0_6px_20px_rgba(255,0,0,0.2)] backdrop-blur-sm border dark:border-white/10 rounded-2xl p-8 hover:border-red-600/30 transition-all text-center"
+              className="bg-white dark:bg-transparent dark:bg-linear-to-b dark:from-white/5 dark:to-white/10 hover:translate-y-[-10px] duration-300 border-none backdrop-blur-sm border dark:border-white/10 rounded-2xl p-8 transition-all"
             >
               {/* Icon */}
-              <div className="w-20 h-20 rounded-2xl overflow-hidden mx-auto mb-6 shadow-md">
+              <div className="w-20 h-20 rounded-2xl overflow-hidden mb-6 shadow-md">
                 <img
                   src={item.icon}
                   alt={item.title_uz}

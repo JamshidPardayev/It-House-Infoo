@@ -4,7 +4,6 @@ import { useMediumStatistics } from "../../api/hooks/useMediumStatistics";
 import { useCompanies } from "../../api/hooks/useCompanies";
 
 export function Graduates() {
-  // API’dan ma’lumot olish
   const {
     data: statsData,
     isLoading: statsLoading,
@@ -19,7 +18,7 @@ export function Graduates() {
 
   if (statsLoading || companiesLoading)
     return (
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-[-100]">
         <p className="text-gray-700 dark:text-gray-300 text-lg">
           Yuklanmoqda...
         </p>
@@ -28,16 +27,16 @@ export function Graduates() {
 
   if (statsError || companiesError)
     return (
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-[-100]">
         <p className="text-red-500 text-lg">Xatolik yuz berdi!</p>
       </div>
     );
 
   if (!statsData)
     return (
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-[-100]">
         <p className="text-gray-700 dark:text-gray-300 text-lg">
-          Statistik ma’lumot topilmadi.
+          Statistik ma'lumot topilmadi.
         </p>
       </div>
     );
@@ -158,7 +157,7 @@ export function Graduates() {
                   alt={company.name}
                   className="h-12 mx-auto mb-4 object-contain"
                 />
-                <p className="text-green-500 text-sm bg-green-200 py-1.5 border border-green-500 dark:bg-green-800 rounded-[10px]">
+                <p className="text-green-500 text-sm bg-green-200 py-1.5 border  border-green-500 dark:border-green-800 dark:bg-green-950 dark:text-green-600 rounded-[10px]">
                   {company.workers} bitiruvchi
                 </p>
               </motion.div>
