@@ -65,7 +65,7 @@ export function Contact() {
                   <input
                     type="text"
                     required
-                    className="w-full bg-white/60 focus:bg-white dark:bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-gray-500 focus:border-blue-600 focus:outline-none transition-colors"
+                    className="w-full bg-white/60  dark:bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-black/80 dark:text-white/80 placeholder-gray-500 focus:border-blue-300 dark:focus:border-gray-600 focus:outline-none transition-colors"
                     placeholder="Ismingiz"
                   />
                 </div>
@@ -74,15 +74,17 @@ export function Contact() {
                   <input
                     type="tel"
                     required
-                    className="w-full bg-white/60 focus:bg-white dark:bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-white placeholder-gray-500 focus:border-blue-600 focus:outline-none transition-colors"
+                    pattern="^\+?\d*$"
+                    className="w-full bg-white/60  dark:bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-black/80 dark:text-white/80 placeholder-gray-500 focus:border-blue-300 dark:focus:border-gray-600 focus:outline-none transition-colors"
                     placeholder="+998 90 123 45 67"
+                    title="Faqat raqamlar va + belgisi ruxsat etiladi"
                   />
                 </div>
 
                 <div>
                   <select
                     required
-                    className="w-full bg-white/60 focus:bg-white dark:bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-gray-500 dark:text-white focus:border-blue-600 focus:outline-none transition-colors"
+                    className="w-full bg-white/60  dark:bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-black/80 dark:text-white/80 placeholder-gray-500 focus:border-blue-300 dark:focus:border-gray-600 focus:outline-none transition-colors"
                   >
                     <option value="">Kursni tanlang</option>
                     <option value="frontend">Frontend Development</option>
@@ -97,7 +99,7 @@ export function Contact() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={submitted}
-                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all flex items-center justify-center gap-3 disabled:opacity-50 shadow-xl shadow-blue-600/30"
+                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all flex items-center justify-center gap-3 disabled:opacity-50 shadow-xl shadow-blue-600/30 cursor-pointer"
                 >
                   {submitted ? (
                     <>
