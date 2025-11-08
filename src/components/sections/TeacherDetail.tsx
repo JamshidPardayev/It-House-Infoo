@@ -61,15 +61,8 @@ const TeacherDetail: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
-
-  useEffect(() => {
-    document.title = "Teacher Detail";
-  }, []);
+    document.title = `${teacher?.full_name}`;
+  }, [teacher]);
 
   if (!teacherId) {
     return (

@@ -55,7 +55,7 @@ export default function CourseDetail() {
   const { id } = useParams();
   const courseId = Number(id);
   const { data, isLoading, isError } = useCourseDetail(courseId);
-  console.log(data);
+  const course: Course = data;
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark"; // default dark
@@ -68,12 +68,8 @@ export default function CourseDetail() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
-  useEffect(() => {
-    document.title = "Course Detail";
-  }, []);
+    document.title = `${course?.title_uz}`;
+  }, [course]);
   if (isLoading)
     return (
       <div className="absolute inset-0 flex items-center justify-center z-[-100]">
@@ -89,8 +85,6 @@ export default function CourseDetail() {
         <p className="text-lg font-semibold text-red-500">Xatolik yuz berdi!</p>
       </div>
     );
-
-  const course: Course = data;
 
   return (
     <div>

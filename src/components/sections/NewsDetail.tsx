@@ -26,7 +26,8 @@ import { Contact } from "./Contact";
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const newsId = id ? Number(id) : undefined;
-
+  const { data: news, isLoading, isError } = useNewsDetail(newsId!);
+  
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
     const root = window.document.documentElement;
@@ -38,18 +39,9 @@ const NewsDetail: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
+    document.title = `${news?.title_uz}`;
+  }, [news]);
 
-  useEffect(() => {
-    document.title = "News Detail";
-  }, []);
-
-  const { data: news, isLoading, isError } = useNewsDetail(newsId!);
-  console.log(news);
 
   if (!newsId)
     return (
