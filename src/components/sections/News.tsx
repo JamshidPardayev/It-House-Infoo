@@ -79,7 +79,6 @@ export const News = () => {
                   <span>{news.created_at.split("T")[0]}</span>
                 </div>
 
-                {/* ✅ STATUS OBYEKTINI TO'G'RI CHIQARISH */}
                 <span className="absolute top-3 left-3 z-10 h-[32px] flex justify-center items-center bg-orange-600 text-white px-5 rounded-2xl">
                   {news.status?.name_uz || "No status"}
                 </span>
