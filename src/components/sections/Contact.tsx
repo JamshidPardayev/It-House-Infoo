@@ -165,7 +165,7 @@ export function Contact() {
                     icon: Telegram,
                     name: "Telegram",
                     color: "from-blue-500 to-cyan-500",
-                    link: "https://t.me/JamshidPardayev",
+                    link: "https://t.me/ithouse_edu/",
                   },
                   {
                     icon: Instagram,
