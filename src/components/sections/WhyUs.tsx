@@ -52,9 +52,7 @@ export function WhyUs() {
             <span className="text-red-500">Nima Uchun IT_HOUSE?</span>
           </motion.div>
           <h2 className="text-black dark:text-white mb-6 text-[20px] font-semibold">
-            Sizni
-            <span className="text-red-600"> Muvaffaqiyatga </span>
-            Olib Boramiz
+            <span className="text-red-600"> Afzalliklarimiz </span>
           </h2>
         </motion.div>
 

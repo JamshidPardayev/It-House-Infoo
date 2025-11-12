@@ -28,10 +28,10 @@ export function Videos() {
           </motion.div>
 
           <h2 className="text-black dark:text-white text-3xl sm:text-4xl font-bold mb-4">
-            YouTube Kanalimizda <span className="text-red-600">200+</span> Video
+            YouTube Kanalimizda <span className="text-red-600">700+</span> Video
           </h2>
           <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto mb-8">
-            50K+ obunachilar • 2M+ ko'rishlar • Har kuni yangi darslar
+            14K+ obunachilar • 700k+ ko'rishlar • Har kuni yangi darslar
           </p>
 
           <motion.a

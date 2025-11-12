@@ -7,7 +7,6 @@ import "swiper/css";
 
 export const News = () => {
   const { data, isLoading, isError } = useNews();
-  console.log(data);
 
   if (isLoading)
     return (

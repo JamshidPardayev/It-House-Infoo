@@ -127,12 +127,18 @@ export function Contact() {
             {/* Contact Details */}
             <div className="space-y-6">
               {[
-                { icon: Phone, label: "Telefon", value: "+998 90 123 45 67" },
+                {
+                  icon: Phone,
+                  label: "Telefon",
+                  value: "+998 90 035 27 27",
+                  value2: "+998 78 113 78 01",
+                },
                 { icon: Mail, label: "Email", value: "info@ithouse.uz" },
                 {
                   icon: MapPin,
                   label: "Manzil",
-                  value: "Toshkent sh., Chilonzor tumani",
+                  value:
+                    "Toshkent sh, Uchtepa tumani, OAZIS savdo markazi, 2-qavat",
                 },
               ].map((item, index) => (
                 <motion.div
@@ -151,6 +157,7 @@ export function Contact() {
                       {item.label}
                     </p>
                     <p className="dark:text-white">{item.value}</p>
+                    <p className="dark:text-white">{item.value2}</p>
                   </div>
                 </motion.div>
               ))}

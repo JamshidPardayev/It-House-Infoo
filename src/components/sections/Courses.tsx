@@ -56,7 +56,7 @@ export function Courses() {
   return (
     <section
       id="courses"
-      className="py-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
+      className="pt-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -70,11 +70,13 @@ export function Courses() {
             <span className="text-red-500 font-medium">Bizning Kurslar</span>
           </div>
 
-          <h2 className="text-black dark:text-white mb-6 text-4xl font-bold">
-            Professional <span className="text-red-600">IT Kasb</span> Tanlang
+          <h2 className="text-black dark:text-white mb-6 text-4xl font-bold max-sm:text-3xl">
+            O'z kelajak <span className="text-red-600"> kasbingizni</span>{" "}
+            Tanlang!
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Zamonaviy texnologiyalar va real loyihalar bilan o‘rganing
+            Real loyihalar asosida sohani o'rganing va bozorda talabgir
+            mutaxasisga aylaning!
           </p>
         </motion.div>
       </div>

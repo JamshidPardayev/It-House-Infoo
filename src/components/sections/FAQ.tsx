@@ -1,39 +1,47 @@
-import { motion, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 export function FAQ() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   const faqs = [
     {
-      question: 'Noldan boshlasam bo\'ladimi?',
-      answer: 'Albatta! Bizning kurslar mutlaqo noldan boshlanadi. Hech qanday oldindan bilim talab qilinmaydi.',
+      question:
+        "Meni hech qanday IT sohasida bilimim yo'q, 0 boshlasam bo'ladimi?",
+      answer:
+        "Albatta! Bizning kurslar mutlaqo noldan boshlanadi. Hech qanday oldindan bilim talab qilinmaydi.",
     },
     {
-      question: 'Kurslar qancha davom etadi?',
-      answer: 'Kurs davomiyligi 5 oydan 10 oygacha. Frontend 6 oy, Backend 8 oy, Full Stack 10 oy.',
+      question: "Kurslar qancha davom etadi?",
+      answer:
+        "Davomiyligi kursga qarab o'zgaradi - 2 oydan 12 oygacha. Masalan:  Foundation kursimiz - 2 oy davom  etadi, Full Stack kursimiz - 12 oy.",
     },
     {
-      question: 'Bo\'lib-bo\'lib to\'lash mumkinmi?',
-      answer: 'Ha! 3, 6 yoki 12 oyga bo\'lib to\'lashingiz mumkin. Foizsiz!',
+      question: "Bo'lib-bo'lib to'lash imkoniyati mavjudmi?",
+      answer: "Ha albatta! Kurs davomida oyma-oy bo'lib to'lash imkoni mavjud",
     },
     {
-      question: 'Ish topishga yordam berasizlarmi?',
-      answer: 'Ha, CV tayyorlash, interview tayyorgarlik va ishga joylashishda to\'liq yordam beramiz.',
+      question: "Ish topishga yordam berasizlarmi?",
+      answer:
+        "Ha, CV tayyorlash, interview tayyorgarlik va ishga joylashishda to'liq yordam beramiz.",
     },
     {
-      question: 'Online yoki offline?',
-      answer: 'Ikkalasi ham mavjud. Siz o\'zingizga qulay formatni tanlashingiz mumkin.',
+      question: "Online yoki offline?",
+      answer:
+        "Ikkalasi ham mavjud. Siz o'zingizga qulay formatni tanlashingiz mumkin.",
     },
     {
-      question: 'Sertifikat beriladimi?',
-      answer: 'Ha, davlat tomonidan tan olingan rasmiy sertifikat beriladi.',
+      question: "Sertifikat beriladimi?",
+      answer: "Ha, davlat tomonidan tan olingan rasmiy sertifikat beriladi.",
     },
   ];
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-b from-white dark:from-gray-900 to-gray-50 dark:to-black relative overflow-hidden transition-colors duration-300">
+    <section
+      id="faq"
+      className="py-20 bg-gradient-to-b from-white dark:from-gray-900 to-gray-50 dark:to-black relative overflow-hidden transition-colors duration-300"
+    >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -49,7 +57,7 @@ export function FAQ() {
           >
             <span className="text-indigo-500">Ko'p Beriladigan Savollar</span>
           </motion.div>
-          
+
           <h2 className="text-black dark:text-white mb-6">
             Savol-<span className="text-indigo-600">Javoblar</span>
           </h2>
@@ -65,7 +73,9 @@ export function FAQ() {
               className="bg-gradient-to-br shadow-md dark:shadow-none from-gray-200 to-gray-100 dark:from-white/5 dark:to-white/10 backdrop-blur-sm border border-gray-700/30 dark:border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all"
             >
               <button
-                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                onClick={() =>
+                  setActiveIndex(activeIndex === index ? null : index)
+                }
                 className="w-full px-8 py-6 flex items-center justify-between gap-4 text-left"
               >
                 <h3 className="dark:text-white">{faq.question}</h3>
@@ -76,19 +86,21 @@ export function FAQ() {
                   <ChevronDown className="w-6 h-6 text-gray-400 flex-shrink-0" />
                 </motion.div>
               </button>
-              
+
               <AnimatePresence>
                 {activeIndex === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
+                    animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
                     <div className="px-8 pb-6">
                       <div className="border-t border-white/10 pt-6">
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
+                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                          {faq.answer}
+                        </p>
                       </div>
                     </div>
                   </motion.div>

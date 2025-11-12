@@ -39,7 +39,7 @@ export function Teachers() {
   return (
     <section
       id="teachers"
-      className="pt-24 py-10 bg-gradient-to-b from-purple-50 dark:from-gray-900 to-gray-100 dark:to-black relative overflow-hidden transition-colors duration-300"
+      className="py-10 bg-gradient-to-b from-purple-50 dark:from-gray-900 to-gray-100 dark:to-black relative overflow-hidden transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -58,10 +58,11 @@ export function Teachers() {
             <span className="text-red-500">Bizning Jamoamiz</span>
           </motion.div>
           <h2 className="text-black dark:text-white mb-6">
-            Professional <span className="text-red-600">O‘qituvchilar</span>
+            Professional <span className="text-red-600">O'qituvchilar</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Dunyoning yirik kompaniyalarida ishlaganlar sizga o‘rgatadi
+            Ko'p yillik tajribaga ega va ko'plab yirik loyihalar bilan ishlagan
+            mutaxasislarimizdan ta'lim olasiz!
           </p>
         </motion.div>
 

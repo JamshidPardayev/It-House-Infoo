@@ -37,14 +37,15 @@ export function ForWho() {
             viewport={{ once: true }}
             className="inline-block bg-purple-600/20 border border-purple-600/30 px-6 py-3 rounded-full mb-6"
           >
-            <span className="text-purple-500">Bu Kurs Kimlar Uchun?</span>
+            <span className="text-purple-500">Kurslarimiz Kimlar Uchun?</span>
           </motion.div>
 
           <h2 className="text-black dark:text-white mb-6">
-            Har Kim <span className="text-purple-600">O‘rgana Oladi</span>
+            <span className="text-purple-600">Kelajagini qurishga</span>{" "}
+            ishtiyoqi borlar uchun!
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Yoshingiz va tajribangiz muhim emas — biz sizga o‘rgatamiz
+            Yoshingiz va tajribangiz muhim emas — hammasini 0 o'rgatamiz
           </p>
         </motion.div>
 

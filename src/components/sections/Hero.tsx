@@ -66,7 +66,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-600/20 to-purple-600/20 border border-red-600/30 px-6 py-3 rounded-full mb-8 backdrop-blur-sm">
             <Star className="w-5 h-5 text-red-500 fill-red-500" />
             <span className="text-gray-900 dark:text-white">
-              O'zbekistondagi #1 IT O'quv Markazi
+              IT HOUSE - kelajak shu yerda
             </span>
             <Star className="w-5 h-5 text-red-500 fill-red-500" />
           </div>
@@ -78,11 +78,12 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-gray-900 dark:text-white mb-8 leading-tight"
         >
-          Kelajagingizni{" "}
+          Zamonaviy
           <span className="bg-gradient-to-r from-red-600 via-red-500 to-purple-600 bg-clip-text text-transparent">
-            IT
-          </span>{" "}
-          Bilan Quring
+            {" "}
+            kasblarni 0 dan{" "}
+          </span>
+          o'rgatamiz
         </motion.h1>
 
         <motion.p
@@ -91,16 +92,13 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-gray-600 dark:text-gray-300 text-xl max-w-3xl mx-auto mb-12 leading-relaxed"
         >
-          Professional IT mutaxassis bo'ling. 6 oyda noldan ishga
-          joylashishgacha!
+          IT HOUSE - barchasi amalga oshadigan maskan, yangi IT kasb ham, yangi
+          kelajak ham
           <br />
           <span className="text-red-500">
             {data?.total_students}+ bitiruvchi
           </span>{" "}
-          •{" "}
-          <span className="text-green-500">
-            {data?.total_employed}% ishga joylashish
-          </span>
+          • <span className="text-green-500">10+ IT kasblar</span>
         </motion.p>
 
         <motion.div
@@ -163,7 +161,7 @@ export function Hero() {
             },
             {
               value: data?.avg_duration + " oy",
-              label: "O'rtacha muddat",
+              label: "O'rtacha o'qish muddat",
               color: "text-red-500",
             },
           ].map((stat, index) => (

@@ -16,6 +16,8 @@ export function Graduates() {
     isError: companiesError,
   } = useCompanies();
 
+  console.log(companiesData);
+
   if (statsLoading || companiesLoading)
     return (
       <div className="absolute inset-0 flex items-center justify-center z-[-100]">
@@ -74,7 +76,6 @@ export function Graduates() {
       id="graduates"
       className="py-32 bg-gray-50 dark:bg-black relative overflow-hidden transition-colors duration-300"
     >
-      {/* Yashil fon effekti */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-600/10 rounded-full blur-[150px]"
         animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.3, 0.2] }}
@@ -90,16 +91,15 @@ export function Graduates() {
           className="text-center mb-20"
         >
           <div className="inline-block bg-green-600/20 border border-green-600/30 px-6 py-3 rounded-full mb-6">
-            <span className="text-green-500">Bizning Muvaffaqiyat</span>
+            <span className="text-green-500">Bizning Yutuqlarimiz</span>
           </div>
 
           <h2 className="text-black dark:text-white mb-6">
             <span className="text-green-600">{statsData.total_graduates}+</span>{" "}
-            Bitiruvchi Dunyoning Eng Yaxshi Kompaniyalarida
+            o'quvchilar IT sohasida o'z kelajagini qurishmoqda
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Bizning bitiruvchilarimiz Google, Meta, Amazon va boshqa yirik
-            kompaniyalarda ishlashmoqda.
+            Bizning o'quvchilar nafaqat ishga joylashishadi, balki o'z kompaniyalariga ham asos solishadi 
           </p>
         </motion.div>
 
@@ -173,11 +173,12 @@ export function Graduates() {
           className="mt-20 text-center bg-gradient-to-r from-green-600/10 to-emerald-600/10 border border-green-600/20 rounded-3xl p-12"
         >
           <h3 className="text-black dark:text-white mb-4">
-            Siz Ham <span className="text-green-600">Ularga</span> Qo'shiling!
+            Siz ham <span className="text-green-600">ular </span>qatoriga
+            qo'shiling!
           </h3>
           <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
-            Kelajakdagi muvaffaqiyatli IT mutaxassis bo'ling va dunyoning eng
-            yaxshi kompaniyalarida ishlang.
+            Kelajakdagi professional IT mutaxassisga aylaning va dunyoning yirik
+            kompaniyalarida ishlang!
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}

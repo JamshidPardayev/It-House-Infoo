@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from "motion/react";
-import { Code2, Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 import { DarkModeToggle } from "./ThemeProvider";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface NavigationProps {
   scrolled: boolean;
@@ -11,7 +11,6 @@ interface NavigationProps {
 export function Navigation({ scrolled }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const menuItems = [
     { label: "Asosiy", href: "#hero" },
@@ -35,9 +34,8 @@ export function Navigation({ scrolled }: NavigationProps) {
     }
   };
 
-  // Mobile scroll (biroz kutish bilan, menu ochilgandan keyin)
   const handleMobileScroll = (href: string) => {
-    setIsOpen(false); // Menu yopish
+    setIsOpen(false);
     setTimeout(() => {
       const element = document.querySelector(href);
       if (element) {
@@ -48,21 +46,8 @@ export function Navigation({ scrolled }: NavigationProps) {
       } else {
         navigate("/", { state: { scrollTo: href } });
       }
-    }, 150); // menu animation tugashini kutish
+    }, 150);
   };
-
-  // Bosh sahifaga kelganda scroll qilish
-  useEffect(() => {
-    if (location.state?.scrollTo) {
-      const target = document.querySelector(location.state.scrollTo);
-      if (target) {
-        const yOffset = -80;
-        const y =
-          target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    }
-  }, [location]);
 
   return (
     <motion.nav
@@ -83,16 +68,17 @@ export function Navigation({ scrolled }: NavigationProps) {
             onClick={() => handleDesktopScroll("#hero")}
           >
             <div className="relative cursor-pointer">
-              <div className="absolute inset-0 bg-red-600 blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
-              <div className="relative bg-gradient-to-br from-red-600 to-red-700 p-2.5 rounded-xl cursor-pointer">
-                <Code2 className="w-6 h-6 text-white cursor-pointer" />
-              </div>
+              <img
+                src="../../public/ithouse.png"
+                alt="logo"
+                className="h-[60px]"
+              />
             </div>
             <div onClick={() => handleDesktopScroll("#hero")}>
               <span className="text-gray-900 dark:text-white block">
                 IT HOUSE
               </span>
-              <span className="text-red-600 text-xs">O'quv Markazi</span>
+              <span className="text-red-600 text-xs">Future is here</span>
             </div>
           </motion.div>
 
