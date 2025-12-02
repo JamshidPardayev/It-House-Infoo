@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Building2, TrendingUp, Award, MapPin } from "lucide-react";
-import { useMediumStatistics } from "../../api/hooks/useMediumStatistics";
+import { useStatistics } from "../../api/hooks/useStatistics";
 import { useCompanies } from "../../api/hooks/useCompanies";
 
 export function Graduates() {
@@ -8,7 +8,8 @@ export function Graduates() {
     data: statsData,
     isLoading: statsLoading,
     isError: statsError,
-  } = useMediumStatistics();
+  } = useStatistics();
+  console.log(statsData)
 
   const {
     data: companiesData,
@@ -47,25 +48,25 @@ export function Graduates() {
   const stats = [
     {
       icon: TrendingUp,
-      value: statsData.total_employed,
+      value: statsData?.total_employed,
       label: "3 oyda ishga joylashish",
       color: "text-green-500",
     },
     {
       icon: Award,
-      value: statsData.avg_start_salary,
+      value: statsData?.avg_start_salary,
       label: "O'rtacha boshlang'ich maosh",
       color: "text-yellow-500",
     },
     {
       icon: Building2,
-      value: statsData.total_graduates,
+      value: statsData?.total_graduates,
       label: "Muvaffaqiyatli bitiruvchilar",
       color: "text-blue-500",
     },
     {
       icon: MapPin,
-      value: statsData.partners,
+      value: statsData?.partners,
       label: "Hamkor kompaniyalar",
       color: "text-purple-500",
     },
@@ -95,7 +96,7 @@ export function Graduates() {
           </div>
 
           <h2 className="text-black dark:text-white mb-6">
-            <span className="text-green-600">{statsData.total_graduates}+</span>{" "}
+            <span className="text-green-600">{statsData?.total_graduates}+</span>{" "}
             o'quvchilar IT sohasida o'z kelajagini qurishmoqda
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">

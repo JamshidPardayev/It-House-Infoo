@@ -103,7 +103,7 @@ export function Courses() {
           }}
           className="py-[30px]"
         >
-          {data.map((course: CourseType, idx: number) => (
+          {data?.map((course: CourseType, idx: number) => (
             <SwiperSlide key={idx}>
               <motion.div
                 onClick={() =>

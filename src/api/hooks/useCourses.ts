@@ -6,7 +6,7 @@ export const useCourses = () => {
   return useQuery({
     queryKey: ["courses"],
     queryFn: async () => {
-      const res = await api.get("/api/course-list/");
+      const res = await api.get("/api/courses/");
       return res.data;
     },
     staleTime: 1000 * 60 * 5,
