@@ -1,26 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../api";
 
-// 🔹 Barcha kurslarni olish
+// ---- TypeScript Interface ----
+export interface ICourse {
+  id: number;
+  modules: any[];
+  technologies: any[];    
+  created_at: string;
+  updated_at: string;
+  banner: string;
+  title_uz: string;
+  title_en: string;
+  title_ru: string;
+  description_uz: string;
+  description_en: string;
+  description_ru: string;
+  price: string;           // API string qaytaryapti
+  duration: number;
+  students: number;
+}
+
+// ---- Barcha kurslarni olish ----
 export const useCourses = () => {
-  return useQuery({
+  return useQuery<ICourse[]>({
     queryKey: ["courses"],
     queryFn: async () => {
-      const res = await api.get("/api/course-list/");
+      const res = await api.get<ICourse[]>("/api/courses/");
       return res.data;
     },
     staleTime: 1000 * 60 * 5,
-  });
-};
-
-// 🔹 Bitta kursni ID orqali olish
-export const useCourseDetail = (courseId: number) => {
-  return useQuery({
-    queryKey: ["course", courseId],
-    queryFn: async () => {
-      const res = await api.get(`/api/courses/${courseId}/`);
-      return res.data;
-    },
-    enabled: !!courseId, // courseId mavjud bo‘lsa, so‘rov yuboriladi
   });
 };

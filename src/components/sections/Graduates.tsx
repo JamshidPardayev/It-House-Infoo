@@ -1,14 +1,14 @@
 import { motion } from "motion/react";
 import { Building2, TrendingUp, Award, MapPin } from "lucide-react";
-import { useMediumStatistics } from "../../api/hooks/useMediumStatistics";
 import { useCompanies } from "../../api/hooks/useCompanies";
+import { useStatistics } from "../../api/hooks/useStatistics";
 
 export function Graduates() {
   const {
     data: statsData,
     isLoading: statsLoading,
     isError: statsError,
-  } = useMediumStatistics();
+  } = useStatistics();
 
   const {
     data: companiesData,

@@ -1,38 +1,42 @@
 import { useParams } from "react-router-dom";
 import { motion } from "motion/react";
 import { Clock, Users, BookOpen, BadgeCheck } from "lucide-react";
-import { useCourseDetail } from "../../api/hooks/useCourses";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { useEffect } from "react";
 import { Contact } from "./Contact";
+import { useCourseDetail } from "../../api/hooks/useCourseDetail";
 
+// ==== Technologies ====
 interface Technology {
   id: number;
   name_uz: string;
-  name_en: string;
-  name_ru: string;
+  name_en?: string;
+  name_ru?: string;
   icon: string;
   created_at: string;
   updated_at: string;
 }
 
+// ==== Module Theme ====
 interface ModuleTheme {
   id: number;
   title_uz: string;
-  title_en: string;
-  title_ru: string;
+  title_en?: string;
+  title_ru?: string;
 }
 
+// ==== Module ====
 interface Module {
   id: number;
   title_uz: string;
-  title_en: string;
-  title_ru: string;
-  themes: ModuleTheme[];
+  title_en?: string;
+  title_ru?: string;
+  themes?: ModuleTheme[];
   created_at: string;
   updated_at: string;
 }
 
+// ==== Course ====
 interface Course {
   id: number;
   title_uz: string;
@@ -54,22 +58,26 @@ interface Course {
 export default function CourseDetail() {
   const { id } = useParams();
   const courseId = Number(id);
-  const { data, isLoading, isError } = useCourseDetail(courseId);
-  const course: Course = data;
 
+  const { data, isLoading, isError } = useCourseDetail(courseId);
+  const course = data as Course | undefined;
+
+  // Set theme
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "dark"; // default dark
-    const root = window.document.documentElement;
-    if (savedTheme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    const root = document.documentElement;
+
+    if (savedTheme === "dark") root.classList.add("dark");
+    else root.classList.remove("dark");
   }, []);
 
+  // Set page title
   useEffect(() => {
-    document.title = `${course?.title_uz}`;
+    if (course?.title_uz) {
+      document.title = `${course.title_uz}`;
+    }
   }, [course]);
+
   if (isLoading)
     return (
       <div className="absolute inset-0 flex items-center justify-center z-[-100]">
@@ -79,7 +87,7 @@ export default function CourseDetail() {
       </div>
     );
 
-  if (isError || !data)
+  if (isError || !course)
     return (
       <div className="absolute inset-0 flex items-center justify-center z-[-100]">
         <p className="text-lg font-semibold text-red-500">Xatolik yuz berdi!</p>
@@ -102,20 +110,21 @@ export default function CourseDetail() {
               className="w-full h-[400px] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+
             <div className="absolute bottom-6 left-6 text-white">
               <h1 className="text-4xl font-bold mb-3">{course.title_uz}</h1>
               <div className="flex gap-4 items-center text-sm">
                 <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
-                  <Clock className="w-4 h-4 text-red-500" /> {course.duration}{" "}
-                  oy
+                  <Clock className="w-4 h-4 text-red-500" /> {course.duration} oy
                 </span>
+
                 <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
-                  <Users className="w-4 h-4 text-red-500" /> {course.students}{" "}
-                  talabalar
+                  <Users className="w-4 h-4 text-red-500" /> {course.students} talabalar
                 </span>
+
                 <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
                   <BookOpen className="w-4 h-4 text-red-500" />{" "}
-                  {course.modules.length} modul
+                  {course.modules?.length || 0} modul
                 </span>
               </div>
             </div>
@@ -131,9 +140,11 @@ export default function CourseDetail() {
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
               Kurs haqida
             </h2>
+
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               {course.description_uz}
             </p>
+
             <span className="flex items-center gap-3 mt-2 dark:text-white">
               <strong>Kurs narxi: </strong>
               <p className="text-[#ee2222] text-[22px] font-bold">
@@ -153,6 +164,7 @@ export default function CourseDetail() {
               <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
                 O‘rganiladigan texnologiyalar
               </h2>
+
               <div className="flex flex-wrap gap-4">
                 {course.technologies.map((tech) => (
                   <div
@@ -166,6 +178,7 @@ export default function CourseDetail() {
                         className="w-full h-full object-cover"
                       />
                     </div>
+
                     <span className="text-gray-800 dark:text-gray-200">
                       {tech.name_uz}
                     </span>
@@ -186,6 +199,7 @@ export default function CourseDetail() {
               <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
                 Kurs modullari:
               </h2>
+
               <div className="flex flex-col gap-4">
                 {course.modules.map((mod) => (
                   <div
@@ -195,8 +209,9 @@ export default function CourseDetail() {
                     <h3 className="text-xl font-semibold text-red-600 dark:text-red-600 mb-2">
                       {mod.title_uz}
                     </h3>
-                    {mod.themes?.length > 0 && (
-                      <ul className=" text-gray-700 dark:text-gray-300">
+
+                    {mod.themes?.length ? (
+                      <ul className="text-gray-700 dark:text-gray-300">
                         {mod.themes.map((theme) => (
                           <li
                             key={theme.id}
@@ -207,7 +222,7 @@ export default function CourseDetail() {
                           </li>
                         ))}
                       </ul>
-                    )}
+                    ) : null}
                   </div>
                 ))}
               </div>
@@ -215,6 +230,7 @@ export default function CourseDetail() {
           )}
         </div>
       </section>
+
       <Contact />
     </div>
   );

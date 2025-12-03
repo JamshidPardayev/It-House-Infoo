@@ -1,9 +1,9 @@
 import { motion } from "motion/react";
 import { ArrowRight, Play, Star } from "lucide-react";
-import { useTopStatistics } from "../../api/hooks/useTopStatistics";
+import { useStatistics } from "../../api/hooks/useStatistics";
 
 export function Hero() {
-  const { data, isLoading, isError } = useTopStatistics();
+  const { data, isLoading, isError } = useStatistics();
 
   if (isLoading)
     return (

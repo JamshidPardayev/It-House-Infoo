@@ -7,22 +7,6 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
 
-type TechnologiesType = {
-  id: number;
-  name_uz: string;
-  icon: string;
-};
-
-type CourseType = {
-  id: number;
-  technologies: TechnologiesType[];
-  title_uz: string;
-  description_uz: string;
-  banner: string;
-  duration: number;
-  students: number;
-};
-
 export function Courses() {
   const { data, isLoading, isError } = useCourses();
 
@@ -103,7 +87,7 @@ export function Courses() {
           }}
           className="py-[30px]"
         >
-          {data.map((course: CourseType, idx: number) => (
+          {data.map((course, idx: number) => (
             <SwiperSlide key={idx}>
               <motion.div
                 onClick={() =>
