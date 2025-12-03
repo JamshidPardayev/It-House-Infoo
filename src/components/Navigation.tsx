@@ -69,7 +69,7 @@ export function Navigation({ scrolled }: NavigationProps) {
           >
             <div className="relative cursor-pointer">
               <img
-                src="../../public/ithouse.png"
+                src="../../ithouse.png"
                 alt="logo"
                 className="h-[60px]"
               />
