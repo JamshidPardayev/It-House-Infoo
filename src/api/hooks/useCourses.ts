@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../api";
 
-// ---- TypeScript Interface ----
 export interface ICourse {
   id: number;
   modules: any[];
-  technologies: any[];    
+  technologies: any[];
   created_at: string;
   updated_at: string;
   banner: string;
@@ -15,12 +14,11 @@ export interface ICourse {
   description_uz: string;
   description_en: string;
   description_ru: string;
-  price: string;           // API string qaytaryapti
+  price: string;
   duration: number;
   students: number;
 }
 
-// ---- Barcha kurslarni olish ----
 export const useCourses = () => {
   return useQuery<ICourse[]>({
     queryKey: ["courses"],

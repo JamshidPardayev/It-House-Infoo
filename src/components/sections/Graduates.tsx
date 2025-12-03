@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Building2, TrendingUp, Award, MapPin } from "lucide-react";
-import { useCompanies } from "../../api/hooks/useCompanies";
 import { useStatistics } from "../../api/hooks/useStatistics";
+import { useCompanies } from "../../api/hooks/useCompanies";
 
 export function Graduates() {
   const {
@@ -9,14 +9,11 @@ export function Graduates() {
     isLoading: statsLoading,
     isError: statsError,
   } = useStatistics();
-
   const {
     data: companiesData,
     isLoading: companiesLoading,
     isError: companiesError,
   } = useCompanies();
-
-  console.log(companiesData);
 
   if (statsLoading || companiesLoading)
     return (
@@ -43,7 +40,6 @@ export function Graduates() {
       </div>
     );
 
-  // Statistikani tayyorlash
   const stats = [
     {
       icon: TrendingUp,
@@ -83,7 +79,7 @@ export function Graduates() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Sarlavha */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,17 +89,17 @@ export function Graduates() {
           <div className="inline-block bg-green-600/20 border border-green-600/30 px-6 py-3 rounded-full mb-6">
             <span className="text-green-500">Bizning Yutuqlarimiz</span>
           </div>
-
           <h2 className="text-black dark:text-white mb-6">
             <span className="text-green-600">{statsData.total_graduates}+</span>{" "}
             o'quvchilar IT sohasida o'z kelajagini qurishmoqda
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Bizning o'quvchilar nafaqat ishga joylashishadi, balki o'z kompaniyalariga ham asos solishadi 
+            Bizning o'quvchilar nafaqat ishga joylashishadi, balki o'z
+            kompaniyalariga ham asos solishadi
           </p>
         </motion.div>
 
-        {/* Statistikalar */}
+        {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {stats.map((stat, index) => (
             <motion.div
@@ -125,7 +121,7 @@ export function Graduates() {
           ))}
         </div>
 
-        {/* Kompaniyalar */}
+        {/* Companies */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +130,6 @@ export function Graduates() {
           <h3 className="text-black dark:text-white text-center mb-12">
             Bitiruvchilarimiz Ishlaydigan Kompaniyalar
           </h3>
-
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {companiesData?.map((company: any, index: number) => (
               <motion.div
@@ -144,20 +139,14 @@ export function Graduates() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ y: -8, scale: 1.05 }}
-                className="relative cursor-pointer rounded-2xl p-8 text-center 
-                   border border-gray-300 dark:border-white/10 
-                   bg-white dark:bg-white/5 
-                   backdrop-blur-sm shadow-md 
-                   hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-300 
-                   dark:hover:from-white/10 dark:hover:to-white/5 
-                   hover:border-gray-400 transition-all duration-500"
+                className="relative cursor-pointer rounded-2xl p-8 text-center border border-gray-300 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-sm shadow-md hover:bg-gradient-to-br hover:from-gray-50 hover:to-gray-300 dark:hover:from-white/10 dark:hover:to-white/5 hover:border-gray-400 transition-all duration-500"
               >
                 <img
                   src={company.logo}
                   alt={company.name}
                   className="h-12 mx-auto mb-4 object-contain"
                 />
-                <p className="text-green-500 text-sm bg-green-200 py-1.5 border  border-green-500 dark:border-green-800 dark:bg-green-950 dark:text-green-600 rounded-[10px]">
+                <p className="text-green-500 text-sm bg-green-200 py-1.5 border border-green-500 dark:border-green-800 dark:bg-green-950 dark:text-green-600 rounded-[10px]">
                   {company.workers} bitiruvchi
                 </p>
               </motion.div>
@@ -166,12 +155,7 @@ export function Graduates() {
         </motion.div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center bg-gradient-to-r from-green-600/10 to-emerald-600/10 border border-green-600/20 rounded-3xl p-12"
-        >
+        <motion.div className="mt-20 text-center bg-gradient-to-r from-green-600/10 to-emerald-600/10 border border-green-600/20 rounded-3xl p-12">
           <h3 className="text-black dark:text-white mb-4">
             Siz ham <span className="text-green-600">ular </span>qatoriga
             qo'shiling!

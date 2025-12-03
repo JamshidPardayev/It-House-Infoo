@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Clock, Users, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import { useCourses } from "../../api/hooks/useCourses";
+import { useCourses, ICourse } from "../../api/hooks/useCourses";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -55,25 +55,20 @@ export function Courses() {
           </div>
 
           <h2 className="text-black dark:text-white mb-6 text-4xl font-bold max-sm:text-3xl">
-            O'z kelajak <span className="text-red-600"> kasbingizni</span>{" "}
-            Tanlang!
+            O'z kelajak <span className="text-red-600"> kasbingizni</span> Tanlang!
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Real loyihalar asosida sohani o'rganing va bozorda talabgir
-            mutaxasisga aylaning!
+            Real loyihalar asosida sohani o'rganing va bozorda talabgir mutaxasisga aylaning!
           </p>
         </motion.div>
       </div>
 
-      {/* 🔥 Swiper - to‘liq ekran kengligida */}
+      {/* Swiper */}
       <div className="relative w-screen left-[50%] right-[50%] ml-[-50vw] mr-[-50vw]">
         <Swiper
           modules={[Autoplay]}
           loop={true}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-          }}
+          autoplay={{ delay: 0, disableOnInteraction: false }}
           speed={15000}
           slidesPerView={3}
           spaceBetween={32}
@@ -87,15 +82,11 @@ export function Courses() {
           }}
           className="py-[30px]"
         >
-          {data.map((course, idx: number) => (
+          {data.map((course: ICourse, idx: number) => (
             <SwiperSlide key={idx}>
               <motion.div
                 onClick={() =>
-                  window.open(
-                    `/courses/${course.id}`,
-                    "_blank",
-                    "noopener,noreferrer"
-                  )
+                  window.open(`/courses/${course.id}`, "_blank", "noopener,noreferrer")
                 }
                 className="bg-gradient-to-br from-white/90 to-gray-100/90 dark:from-[#3f0101] dark:to-black/50 shadow-lg dark:shadow-gray-800/40 border border-gray-200 dark:border-gray-700 min-w-[280px] min-h-[700px] rounded-2xl overflow-hidden transition-all cursor-pointer hover:shadow-xl hover:shadow-red-600/20"
               >
@@ -109,9 +100,7 @@ export function Courses() {
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
                   <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
                     <Users className="w-4 h-4 text-red-500" />
-                    <span className="text-white text-sm font-medium">
-                      {course.students}+
-                    </span>
+                    <span className="text-white text-sm font-medium">{course.students}+</span>
                   </div>
                 </div>
 
@@ -121,9 +110,7 @@ export function Courses() {
                     <div className="flex items-center gap-3 mb-4">
                       <div className="bg-gray-200/40 dark:bg-white/10 px-4 py-2 rounded-lg flex items-center gap-2">
                         <Clock className="w-4 h-4 text-red-500" />
-                        <span className="text-gray-700 dark:text-white text-sm font-medium">
-                          {course.duration} oy
-                        </span>
+                        <span className="text-gray-700 dark:text-white text-sm font-medium">{course.duration} oy</span>
                       </div>
                     </div>
 
@@ -136,21 +123,15 @@ export function Courses() {
 
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-2 mb-6">
-                      {course?.technologies?.map((tech) => (
+                      {course.technologies?.map((tech) => (
                         <span
                           key={tech.id}
                           className="flex items-center gap-2 px-3 py-1.5 bg-white/70 dark:bg-gray-800/80 rounded-lg text-sm border border-gray-200 dark:border-gray-700"
                         >
                           <div className="w-[25px] h-[25px] rounded-[3px] overflow-hidden">
-                            <img
-                              src={tech.icon}
-                              alt={tech.name_uz}
-                              className="w-full h-full object-cover"
-                            />
+                            <img src={tech.icon} alt={tech.name_uz} className="w-full h-full object-cover" />
                           </div>
-                          <p className="text-gray-800 dark:text-gray-200">
-                            {tech.name_uz}
-                          </p>
+                          <p className="text-gray-800 dark:text-gray-200">{tech.name_uz}</p>
                         </span>
                       ))}
                     </div>
@@ -182,11 +163,7 @@ export function Courses() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() =>
-            document
-              .getElementById("contact")
-              ?.scrollIntoView({ behavior: "smooth" })
-          }
+          onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           className="bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-4 rounded-xl hover:from-red-700 hover:to-red-800 transition-all shadow-xl shadow-red-600/30"
         >
           Bepul Maslahat Olish
