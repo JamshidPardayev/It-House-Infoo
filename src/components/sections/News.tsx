@@ -25,6 +25,7 @@ export const News = () => {
         Hozircha yangiliklar mavjud emas
       </div>
     );
+console.log(data);
 
   return (
     <section className="py-20 bg-gradient-to-b from-gray-100 dark:from-black to-white dark:to-gray-900">
@@ -79,7 +80,7 @@ export const News = () => {
                 </div>
 
                 <span className="absolute top-3 left-3 z-10 h-[32px] flex justify-center items-center bg-orange-600 text-white px-5 rounded-2xl">
-                  {news.status?.name_uz || "No status"}
+                  {news.status || "No status"}
                 </span>
               </div>
 

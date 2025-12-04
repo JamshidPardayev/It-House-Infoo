@@ -1,14 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../api";
 
-export type StatusType = {
-  id: number;
-  name_uz: string;
-  name_ru: string;
-  name_en: string;
-  created_at: string;
-  updated_at: string;
-};
 
 export type NewsType = {
   id: number;
@@ -21,7 +13,7 @@ export type NewsType = {
   description_ru: string;
   description_en: string;
   banner: string;
-  status: StatusType;
+  status: string;
 };
 
 // Get all news
