@@ -1,47 +1,27 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNewsDetail } from "../../api/hooks/useNews";
+import { useStatus } from "../../api/hooks/useStatus"; // ✅ qo'shildi
 import { motion } from "motion/react";
 import { Calendar } from "lucide-react";
 import { Contact } from "./Contact";
-
-// interface Status {
-//   id: number;
-//   name_uz: string;
-//   name_en: string;
-//   name_ru: string;
-//   created_at: string;
-//   updated_at: string;
-// }
-
-// interface News {
-//   id: number;
-//   title_uz: string;
-//   description_uz: string;
-//   banner: string;
-//   created_at: string;
-//   status: Status | string;
-// }
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const newsId = id ? Number(id) : undefined;
   const { data: news, isLoading, isError } = useNewsDetail(newsId!);
-  
+  const { data: statusData } = useStatus(); // ✅ status ro‘yxati
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
     const root = window.document.documentElement;
-    if (savedTheme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
+    if (savedTheme === "dark") root.classList.add("dark");
+    else root.classList.remove("dark");
   }, []);
 
   useEffect(() => {
     document.title = `${news?.title_uz}`;
   }, [news]);
-
 
   if (!newsId)
     return (
@@ -58,14 +38,25 @@ const NewsDetail: React.FC = () => {
       </div>
     );
 
+  // 🔥 STATUSNI TO‘G‘RI ANIQLASH FUNKSIYASI
   const renderStatus = () => {
-    if (!news.status) return "Start";
-    // Agar status obyekt bo‘lsa, name_uz ni ko‘rsatamiz
-    if (typeof news.status === "object") return news.status?.name_uz;
-    return news.status;
+    if (!statusData) return "Start";
+
+    // Agar news.status obyekt bo‘lsa
+    if (typeof news.status === "object" && news.status !== null) {
+      return news.status.name_uz || "Start";
+    }
+
+    // Agar news.status ID bo‘lsa → status ro‘yxatidan topamiz
+    if (typeof news.status === "number") {
+      const found = statusData.find((s) => s.id === news.status);
+      return found?.name_uz || "Start";
+    }
+
+    return "Start";
   };
 
-  // Agar description_uz obyekt bo‘lsa, stringga aylantirish
+  // description_uz agar obyekt bo‘lsa → stringga aylantiramiz
   const description =
     typeof news.description_uz === "string"
       ? news.description_uz
@@ -86,11 +77,13 @@ const NewsDetail: React.FC = () => {
                 <span className="h-[35px] flex justify-center items-center bg-orange-600 text-white px-5 rounded-2xl">
                   {renderStatus()}
                 </span>
+
                 <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                   <Calendar className="w-4 h-4" />
                   <span>{news.created_at.split("T")[0]}</span>
                 </div>
               </div>
+
               <h1 className="text-3xl mt-3 font-semibold mb-4 text-gray-900 dark:text-white">
                 {news.title_uz}
               </h1>
@@ -111,6 +104,7 @@ const NewsDetail: React.FC = () => {
 
               <div className="flex justify-between items-center mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <p>Bu yangiliklarni ulashing</p>
+
                 <button
                   onClick={async () => {
                     const shareData = {
@@ -118,10 +112,10 @@ const NewsDetail: React.FC = () => {
                       text: description.slice(0, 100) + "...",
                       url: window.location.href,
                     };
+
                     if (navigator.share) {
                       try {
                         await navigator.share(shareData);
-                        console.log("Yangilik muvaffaqiyatli ulashildi");
                       } catch (err) {
                         console.warn("Ulashish bekor qilindi yoki xato:", err);
                       }
@@ -130,9 +124,7 @@ const NewsDetail: React.FC = () => {
                         await navigator.clipboard.writeText(
                           window.location.href
                         );
-                        alert(
-                          "🔗 Havola nusxalandi! Endi uni istalgan joyga joylashtiring."
-                        );
+                        alert("🔗 Havola nusxalandi!");
                       } catch (err) {
                         console.error("Clipboard xatosi:", err);
                       }
@@ -155,6 +147,7 @@ const NewsDetail: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
       <Contact />
     </div>
   );
