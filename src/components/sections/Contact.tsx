@@ -14,7 +14,7 @@ import { useLang } from "../../context/LangContext";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
-  const { t } = useLang(); // til o‘zgarganda reactive bo‘ladi
+  const { t } = useLang();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -153,7 +153,7 @@ export function Contact() {
             <div className="bg-gradient-to-br shadow-lg dark:shadow-none bg-gray-600/20 dark:from-white/5 dark:to-white/10 backdrop-blur-sm border border-gray-300 dark:border-white/10 rounded-3xl p-8">
               <h3 className="dark:text-white mb-6">{t.menu?.videos}</h3>
               <div className="flex gap-4">
-                {t.contact?.social?.map((social, index) => {
+                {t.contact?.social?.map((social: any, index: number) => {
                   const Icon = socialIcons[index] || Instagram;
                   return (
                     <motion.a

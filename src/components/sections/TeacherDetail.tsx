@@ -177,7 +177,7 @@ export default function TeacherDetail() {
                 </p>
               </div>
               <div className="mt-2 flex flex-wrap gap-2">
-                {teacher.skills.map((skill) => (
+                {teacher.skills.map((skill: any) => (
                   <span
                     key={skill.id}
                     className="px-4 py-2 rounded-[10px] text-sm bg-gradient-to-br from-gray-300 to-gray-400 dark:from-[#3f000a] dark:to-[#18003f] dark:text-white/90"
@@ -210,7 +210,7 @@ export default function TeacherDetail() {
                 </p>
               </div>
               <div className="grid grid-cols-2 max-md:grid-cols-1 gap-2 mt-3">
-                {teacher.achievements.map((achiev) => (
+                {teacher.achievements.map((achiev: any) => (
                   <span
                     key={achiev.id}
                     className="flex items-center gap-2 px-3 py-3 rounded-[10px] bg-gray-300 dark:bg-white/5 text-black dark:text-white text-sm"

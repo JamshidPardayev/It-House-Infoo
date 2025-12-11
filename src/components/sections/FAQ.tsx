@@ -39,7 +39,7 @@ export function FAQ() {
         </motion.div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs.map((faq: any, index: number) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

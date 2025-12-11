@@ -80,11 +80,13 @@ export default function CourseDetail() {
               <h1 className="text-4xl font-bold mb-3">{getText(course)}</h1>
               <div className="flex gap-4 items-center text-sm">
                 <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
-                  <Clock className="w-4 h-4 text-red-500" /> {course.duration} {t.courses.duration}
+                  <Clock className="w-4 h-4 text-red-500" /> {course.duration}{" "}
+                  {t.courses.duration}
                 </span>
 
                 <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
-                  <Users className="w-4 h-4 text-red-500" /> {course.students} {t.courses.students}
+                  <Users className="w-4 h-4 text-red-500" /> {course.students}{" "}
+                  {t.courses.students}
                 </span>
 
                 <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
@@ -115,7 +117,9 @@ export default function CourseDetail() {
 
             <span className="flex items-center gap-3 mt-2">
               <strong>Kurs narxi: </strong>
-              <p className="text-[#ee2222] text-[22px] font-bold">{course.price} so'm</p>
+              <p className="text-[#ee2222] text-[22px] font-bold">
+                {course.price} so'm
+              </p>
             </span>
           </motion.div>
 
@@ -129,7 +133,9 @@ export default function CourseDetail() {
                 isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"
               }`}
             >
-              <h2 className="text-2xl font-semibold mb-6">O‘rganiladigan texnologiyalar</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                O‘rganiladigan texnologiyalar
+              </h2>
               <div className="flex flex-wrap gap-4">
                 {course.technologies.map((tech) => (
                   <div
@@ -141,7 +147,11 @@ export default function CourseDetail() {
                     }`}
                   >
                     <div className="w-[30px] h-[30px] overflow-hidden rounded">
-                      <img src={tech.icon} alt={getText(tech)} className="w-full h-full object-cover" />
+                      <img
+                        src={tech.icon}
+                        alt={getText(tech)}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <span>{getText(tech)}</span>
                   </div>
@@ -169,11 +179,16 @@ export default function CourseDetail() {
                       isDark ? "border-gray-600" : "border-gray-300"
                     }`}
                   >
-                    <h3 className="text-xl font-semibold text-red-600 mb-2">{getText(mod)}</h3>
+                    <h3 className="text-xl font-semibold text-red-600 mb-2">
+                      {getText(mod)}
+                    </h3>
                     {mod.themes?.length ? (
                       <ul>
-                        {mod.themes.map((theme) => (
-                          <li key={theme.id} className="flex items-center gap-2 mt-2">
+                        {mod.themes.map((theme: any) => (
+                          <li
+                            key={theme.id}
+                            className="flex items-center gap-2 mt-2"
+                          >
                             <BadgeCheck className="text-green-500" />
                             {getText(theme)}
                           </li>

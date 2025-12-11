@@ -12,9 +12,11 @@ export function useLang() {
     localStorage.setItem("lang", lang);
   }, [lang]);
 
-  const t = translations[lang];
+  type LangType = "uz" | "ru" | "en";
+  const t = translations[lang as LangType];
 
-  // APIdan kelgan ma'lumotlar uchun helper
+  // const t = translations[lang];
+
   const getText = (obj: any) => {
     if (!obj) return "";
     return (
@@ -25,6 +27,7 @@ export function useLang() {
       ""
     );
   };
+  
 
   return { lang, setLang, t, getText };
 }
