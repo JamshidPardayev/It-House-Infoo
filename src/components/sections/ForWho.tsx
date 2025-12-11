@@ -7,6 +7,15 @@ export function ForWho() {
   const { t } = useLang();
   const { data, isLoading, isError } = useCourseAbout();
 
+
+  type CourseAboutType = {
+    title_uz: string;
+    title_ru: string;
+    title_en: string;
+    description_uz: string;
+    description_ru: string;
+    description_en: string;
+  };
   if (isLoading)
     return (
       <div className="flex justify-center items-center py-32 text-gray-500 dark:text-gray-300 z-[-100]">
@@ -65,10 +74,12 @@ export function ForWho() {
               </div>
 
               <h3 className="dark:text-white mb-3">
-                {audience[`title_${t.lang}`] || audience.title_uz}
+                {audience[`title_${t.lang}` as keyof CourseAboutType] ||
+                  audience.title_uz}
               </h3>
               <p className="text-gray-400">
-                {audience[`description_${t.lang}`] || audience.description_uz}
+                {audience[`description_${t.lang}` as keyof CourseAboutType] ||
+                  audience.description_uz}
               </p>
             </motion.div>
           ))}
