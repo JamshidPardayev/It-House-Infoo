@@ -4,11 +4,11 @@ import { useCourseAbout } from "../../api/hooks/useCourseAbout";
 import { useLang } from "../../context/LangContext";
 
 export function ForWho() {
-  const { t } = useLang();
+  const { t, getText } = useLang();
   const { data, isLoading, isError } = useCourseAbout();
 
-
   type CourseAboutType = {
+    id: number;
     title_uz: string;
     title_ru: string;
     title_en: string;
@@ -16,6 +16,7 @@ export function ForWho() {
     description_ru: string;
     description_en: string;
   };
+
   if (isLoading)
     return (
       <div className="flex justify-center items-center py-32 text-gray-500 dark:text-gray-300 z-[-100]">
@@ -73,13 +74,20 @@ export function ForWho() {
                 <CheckCircle2 className="w-8 h-8 text-white" />
               </div>
 
+              {/* API malumotlarini tarjima qilish */}
               <h3 className="dark:text-white mb-3">
-                {audience[`title_${t.lang}` as keyof CourseAboutType] ||
-                  audience.title_uz}
+                {getText({
+                  title_uz: audience.title_uz,
+                  title_ru: audience.title_ru,
+                  title_en: audience.title_en,
+                })}
               </h3>
               <p className="text-gray-400">
-                {audience[`description_${t.lang}` as keyof CourseAboutType] ||
-                  audience.description_uz}
+                {getText({
+                  title_uz: audience.description_uz,
+                  title_ru: audience.description_ru,
+                  title_en: audience.description_en,
+                })}
               </p>
             </motion.div>
           ))}
