@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNewsDetail } from "../../api/hooks/useNews";
-import { useStatus } from "../../api/hooks/useStatus"; // ✅ qo'shildi
+import { useStatus } from "../../api/hooks/useStatus";
 import { motion } from "motion/react";
 import { Calendar } from "lucide-react";
 import { Contact } from "./Contact";
+import { useLang } from "../../context/LangContext";
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const newsId = id ? Number(id) : undefined;
   const { data: news, isLoading, isError } = useNewsDetail(newsId!);
-  const { data: statusData } = useStatus(); // ✅ status ro‘yxati
+  const { data: statusData } = useStatus();
+  const { getText, t } = useLang();
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
@@ -20,47 +22,46 @@ const NewsDetail: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    document.title = `${news?.title_uz}`;
+    if (news) document.title = getText(news);
   }, [news]);
 
   if (!newsId)
     return (
       <div className="p-10 text-center text-red-500 z-[-100]">
-        Yangilik ID topilmadi
+        {t.news.invalidId}
       </div>
     );
   if (isLoading)
-    return <div className="p-10 text-center z-[-100]">Yuklanmoqda...</div>;
+    return <div className="p-10 text-center z-[-100]">{t.news.loading}</div>;
   if (isError || !news)
     return (
       <div className="p-10 text-center text-red-500 z-[-100]">
-        Xatolik yuz berdi
+        {t.news.error}
       </div>
     );
 
-  // 🔥 STATUSNI TO‘G‘RI ANIQLASH FUNKSIYASI
+  // 🔥 STATUSNI TO‘G‘RI ANIQLASH
   const renderStatus = () => {
-    if (!statusData) return "Start";
+    if (!statusData) return t.news.noStatus;
 
-    // Agar news.status obyekt bo‘lsa
     if (typeof news.status === "object" && news.status !== null) {
-      return news.status.name_uz || "Start";
+      return getText(news.status);
     }
 
-    // Agar news.status ID bo‘lsa → status ro‘yxatidan topamiz
     if (typeof news.status === "number") {
       const found = statusData.find((s) => s.id === news.status);
-      return found?.name_uz || "Start";
+      return found ? getText(found) : t.news.noStatus;
     }
 
-    return "Start";
+    return t.news.noStatus;
   };
 
-  // description_uz agar obyekt bo‘lsa → stringga aylantiramiz
-  const description =
-    typeof news.description_uz === "string"
-      ? news.description_uz
-      : JSON.stringify(news.description_uz);
+  // description
+  const description = getText({
+    description_uz: news.description_uz,
+    description_ru: news.description_ru,
+    description_en: news.description_en,
+  });
 
   return (
     <div>
@@ -85,14 +86,14 @@ const NewsDetail: React.FC = () => {
               </div>
 
               <h1 className="text-3xl mt-3 font-semibold mb-4 text-gray-900 dark:text-white">
-                {news.title_uz}
+                {getText(news)}
               </h1>
             </div>
 
             <div className="mx-8 h-64 rounded-2xl overflow-hidden">
               <img
                 src={news.banner}
-                alt={news.title_uz}
+                alt={getText(news)}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -103,12 +104,12 @@ const NewsDetail: React.FC = () => {
               </p>
 
               <div className="flex justify-between items-center mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-                <p>Bu yangiliklarni ulashing</p>
+                <p>{t.news.shareText}</p>
 
                 <button
                   onClick={async () => {
                     const shareData = {
-                      title: news.title_uz,
+                      title: getText(news),
                       text: description.slice(0, 100) + "...",
                       url: window.location.href,
                     };
@@ -117,16 +118,16 @@ const NewsDetail: React.FC = () => {
                       try {
                         await navigator.share(shareData);
                       } catch (err) {
-                        console.warn("Ulashish bekor qilindi yoki xato:", err);
+                        console.warn("Share cancelled or error:", err);
                       }
                     } else if (navigator.clipboard) {
                       try {
                         await navigator.clipboard.writeText(
                           window.location.href
                         );
-                        alert("🔗 Havola nusxalandi!");
+                        alert("🔗 " + t.news.linkCopied);
                       } catch (err) {
-                        console.error("Clipboard xatosi:", err);
+                        console.error("Clipboard error:", err);
                       }
                     } else {
                       const temp = document.createElement("textarea");
@@ -135,12 +136,12 @@ const NewsDetail: React.FC = () => {
                       temp.select();
                       document.execCommand("copy");
                       document.body.removeChild(temp);
-                      alert("Havola nusxalandi!");
+                      alert("🔗 " + t.news.linkCopied);
                     }
                   }}
                   className="bg-orange-700 h-[40px] w-[100px] text-white rounded-[10px] cursor-pointer hover:bg-orange-800 transition"
                 >
-                  Ulashish
+                  {t.news.shareBtn}
                 </button>
               </div>
             </div>

@@ -1,41 +1,13 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useLang } from "../../context/LangContext";
 
 export function FAQ() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
+  const { t } = useLang();
 
-  const faqs = [
-    {
-      question:
-        "Meni hech qanday IT sohasida bilimim yo'q, 0 boshlasam bo'ladimi?",
-      answer:
-        "Albatta! Bizning kurslar mutlaqo noldan boshlanadi. Hech qanday oldindan bilim talab qilinmaydi.",
-    },
-    {
-      question: "Kurslar qancha davom etadi?",
-      answer:
-        "Davomiyligi kursga qarab o'zgaradi - 2 oydan 12 oygacha. Masalan:  Foundation kursimiz - 2 oy davom  etadi, Full Stack kursimiz - 12 oy.",
-    },
-    {
-      question: "Bo'lib-bo'lib to'lash imkoniyati mavjudmi?",
-      answer: "Ha albatta! Kurs davomida oyma-oy bo'lib to'lash imkoni mavjud",
-    },
-    {
-      question: "Ish topishga yordam berasizlarmi?",
-      answer:
-        "Ha, CV tayyorlash, interview tayyorgarlik va ishga joylashishda to'liq yordam beramiz.",
-    },
-    {
-      question: "Online yoki offline?",
-      answer:
-        "Ikkalasi ham mavjud. Siz o'zingizga qulay formatni tanlashingiz mumkin.",
-    },
-    {
-      question: "Sertifikat beriladimi?",
-      answer: "Ha, davlat tomonidan tan olingan rasmiy sertifikat beriladi.",
-    },
-  ];
+  const faqs = t.faq.items;
 
   return (
     <section
@@ -55,11 +27,14 @@ export function FAQ() {
             viewport={{ once: true }}
             className="inline-block bg-indigo-600/20 border border-indigo-600/30 px-6 py-3 rounded-full mb-6"
           >
-            <span className="text-indigo-500">Ko'p Beriladigan Savollar</span>
+            <span className="text-indigo-500">{t.faq.title}</span>
           </motion.div>
 
           <h2 className="text-black dark:text-white mb-6">
-            Savol-<span className="text-indigo-600">Javoblar</span>
+            {t.faq.subtitle.split("-")[0]}-
+            <span className="text-indigo-600">
+              {t.faq.subtitle.split("-")[1]}
+            </span>
           </h2>
         </motion.div>
 

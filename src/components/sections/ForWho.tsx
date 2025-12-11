@@ -1,21 +1,23 @@
 import { motion } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 import { useCourseAbout } from "../../api/hooks/useCourseAbout";
+import { useLang } from "../../context/LangContext";
 
 export function ForWho() {
+  const { t } = useLang();
   const { data, isLoading, isError } = useCourseAbout();
 
   if (isLoading)
     return (
       <div className="flex justify-center items-center py-32 text-gray-500 dark:text-gray-300 z-[-100]">
-        Yuklanmoqda...
+        {t.loading || "Yuklanmoqda..."}
       </div>
     );
 
   if (isError)
     return (
       <div className="flex justify-center items-center py-32 text-red-500 z-[-100]">
-        Ma'lumotlarni yuklab bo‘lmadi
+        {t.error || "Ma'lumotlarni yuklab bo‘lmadi"}
       </div>
     );
 
@@ -37,15 +39,15 @@ export function ForWho() {
             viewport={{ once: true }}
             className="inline-block bg-purple-600/20 border border-purple-600/30 px-6 py-3 rounded-full mb-6"
           >
-            <span className="text-purple-500">Kurslarimiz Kimlar Uchun?</span>
+            <span className="text-purple-500">{t.forWho.badge}</span>
           </motion.div>
 
           <h2 className="text-black dark:text-white mb-6">
-            <span className="text-purple-600">Kelajagini qurishga</span>{" "}
-            ishtiyoqi borlar uchun!
+            {t.forWho.title1}{" "}
+            <span className="text-purple-600">{t.forWho.title2}</span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Yoshingiz va tajribangiz muhim emas — hammasini 0 o'rgatamiz
+            {t.forWho.description}
           </p>
         </motion.div>
 
@@ -62,8 +64,12 @@ export function ForWho() {
                 <CheckCircle2 className="w-8 h-8 text-white" />
               </div>
 
-              <h3 className="dark:text-white mb-3">{audience.title_uz}</h3>
-              <p className="text-gray-400">{audience.description_uz}</p>
+              <h3 className="dark:text-white mb-3">
+                {audience[`title_${t.lang}`] || audience.title_uz}
+              </h3>
+              <p className="text-gray-400">
+                {audience[`description_${t.lang}`] || audience.description_uz}
+              </p>
             </motion.div>
           ))}
         </div>

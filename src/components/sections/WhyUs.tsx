@@ -1,18 +1,24 @@
 import { motion } from "motion/react";
 import { Loader2 } from "lucide-react";
 import { useEducationAbout } from "../../api/hooks/useEducationAbout";
+import { useLanguage } from "../../context/LangContext";
 
 type EducationAbout = {
   id: number;
   icon: string;
   title_uz: string;
+  title_ru: string;
+  title_en: string;
   description_uz: string;
+  description_ru: string;
+  description_en: string;
   created_at: string;
   updated_at: string;
 };
 
 export function WhyUs() {
   const { data, isLoading, isError } = useEducationAbout();
+  const { t, getText } = useLanguage();
 
   if (isLoading) {
     return (
@@ -49,10 +55,10 @@ export function WhyUs() {
             viewport={{ once: true }}
             className="inline-block bg-red-600/20 border border-red-600/30 px-6 py-3 rounded-full mb-6"
           >
-            <span className="text-red-500">Nima Uchun IT_HOUSE?</span>
+            <span className="text-red-500">{t.whyus.badge}</span>
           </motion.div>
           <h2 className="text-black dark:text-white mb-6 text-[20px] font-semibold">
-            <span className="text-red-600"> Afzalliklarimiz </span>
+            <span className="text-red-600">{t.whyus.title}</span>
           </h2>
         </motion.div>
 
@@ -70,19 +76,27 @@ export function WhyUs() {
               <div className="w-20 h-20 rounded-2xl overflow-hidden mb-6 shadow-md">
                 <img
                   src={item.icon}
-                  alt={item.title_uz}
+                  alt={getText(item)}
                   className="w-full h-full object-cover"
                 />
               </div>
 
               {/* Title */}
               <h3 className="dark:text-white text-lg font-semibold mb-3">
-                {item.title_uz}
+                {getText({
+                  title_uz: item.title_uz,
+                  title_ru: item.title_ru,
+                  title_en: item.title_en,
+                })}
               </h3>
 
               {/* Description */}
               <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-4">
-                {item.description_uz}
+                {getText({
+                  description_uz: item.description_uz,
+                  description_ru: item.description_ru,
+                  description_en: item.description_en,
+                })}
               </p>
 
               {/* Sana */}

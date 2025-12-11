@@ -1,0 +1,152 @@
+{
+  "hero": {
+    "badge": "IT HOUSE - Future is here",
+    "title1": "Modern",
+    "title2": "skills from scratch",
+    "title3": "we teach",
+    "description": "IT HOUSE is a place to make everything possible, new IT career, new future",
+    "students": "Students",
+    "graduates": "Graduates",
+    "employed": "Employed",
+    "duration": "Average study duration",
+    "btn_consult": "Free Consultation",
+    "btn_courses": "View Courses"
+  },
+  "menu": {
+    "home": "Home",
+    "courses": "Courses",
+    "graduates": "Graduates",
+    "teachers": "Teachers",
+    "videos": "Videos",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "contact": {
+    "phone": ["+998 90 035 27 27", "+998 78 113 78 01"],
+    "email": "ithouseedu@gmail.com",
+    "address": "Tashkent, Uchtepa district, OAZIS shopping center, 2nd floor",
+    "social": [
+      { "name": "Telegram", "link": "https://t.me/ithouse_edu/" },
+      { "name": "Instagram", "link": "https://www.instagram.com/ithouse_edu/" },
+      {
+        "name": "YouTube",
+        "link": "https://youtu.be/9bGpGeH8zrw?si=kZL_XjagoVZ5QG-r"
+      }
+    ]
+  },
+  "courses": {
+    "title": "Our Courses",
+    "subtitle": "Choose your future profession!",
+    "description": "Learn the field based on real projects and become a sought-after specialist!",
+    "more": "More info",
+    "cta": "Get Free Consultation",
+    "duration": "mo",
+    "students": "students"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Q&A",
+    "items": [
+      {
+        "question": "I have no knowledge in IT, can I start from zero?",
+        "answer": "Of course! Our courses start from scratch. No prior knowledge is required."
+      },
+      {
+        "question": "How long are the courses?",
+        "answer": "Duration depends on the course — from 2 to 12 months. For example: Foundation course — 2 months, Full Stack — 12 months."
+      },
+      {
+        "question": "Is installment payment available?",
+        "answer": "Yes, absolutely! Payment in installments month by month is available during the course."
+      },
+      {
+        "question": "Do you help with job placement?",
+        "answer": "Yes, we provide full assistance with CV preparation, interview training, and job placement."
+      },
+      {
+        "question": "Online or offline?",
+        "answer": "Both formats are available. You can choose the one convenient for you."
+      },
+      {
+        "question": "Is a certificate provided?",
+        "answer": "Yes, an official state-recognized certificate is provided."
+      }
+    ]
+  },
+  "forWho": {
+    "badge": "Who are our courses for?",
+    "title1": "For those who",
+    "title2": "want to build their future!",
+    "description": "Age and experience do not matter — we teach everything from scratch"
+  },
+  "graduates": {
+    "badge": "Our Achievements",
+    "title_suffix": "students are building their future in IT",
+    "description": "Our students not only get hired but also build their own companies",
+    "stat1": "Employment in 3 months",
+    "stat2": "Average starting salary",
+    "stat3": "Successful graduates",
+    "stat4": "Partner companies",
+    "companies_title": "Companies Our Graduates Work At",
+    "workers": "graduates",
+    "cta_title": "Join them too!",
+    "cta_sub": "Become a professional IT specialist and work in top global companies!",
+    "cta_btn": "Join Now"
+  },
+  "news_section": {
+    "title": "Latest <span class=\"text-orange-600\">News</span>",
+    "subtitle": "Stay updated with the latest news from IT_HOUSE and our students",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "empty": "No news available yet",
+    "read_more": "Read more",
+    "no_status": "No status"
+  },
+  "news": {
+    "latest": "Latest",
+    "news": "News",
+    "subtitle": "Stay updated with the latest news from IT HOUSE center",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "empty": "No news available yet",
+    "readMore": "Read more",
+    "noStatus": "No status",
+    "invalidId": "News ID not found",
+    "shareText": "Share this news",
+    "shareBtn": "Share",
+    "related": "Other news on this topic"
+  },
+  "teachers": {
+    "badge": "Our Team",
+    "title1": "Professional",
+    "title2": " Teachers",
+    "description": "Learn from experts with years of experience and large-scale project backgrounds!",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  },
+  "videos": {
+    "badge": "Free Video Lessons",
+    "title": "700+ Videos on Our YouTube Channel",
+    "description": "14K+ subscribers • 700k+ views • New lessons every day",
+    "button": "Subscribe to YouTube Channel"
+  },
+  "whyus": {
+    "badge": "Why IT_HOUSE?",
+    "title": "Our Advantages"
+  },
+  "teacherDetail": {
+    "bio": "Biography",
+    "skills": "Skills",
+    "achievements": "Achievements",
+    "experience": "Experience",
+    "company": "Company",
+    "students": "Students",
+    "year": "years"
+  },
+  "courseDetail": {
+    "more": "More",
+    "price": "Course Price",
+    "modules": "Course Modules",
+    "technologies": "Technologies to Learn"
+  }
+}

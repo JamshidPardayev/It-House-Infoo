@@ -1,0 +1,142 @@
+{
+  "hero": {
+    "badge": "IT HOUSE - Kelajak shu yerda",
+    "title1": "Zamonaviy",
+    "title2": "ko‘nikmalarni boshlang‘ichdan",
+    "title3": "o‘rgatamiz",
+    "description": "IT HOUSE – hamma narsani amalga oshirish mumkin bo‘lgan joy, yangi IT karera, yangi kelajak",
+    "students": "Talabalar",
+    "graduates": "Bitiruvchilar",
+    "employed": "Ishga joylashgan",
+    "duration": "O‘rta o‘qish davomiyligi",
+    "btn_consult": "Bepul Maslahat",
+    "btn_courses": "Kurslarni Ko‘rish"
+  },
+  "menu": {
+    "home": "Asosiy",
+    "courses": "Kurslar",
+    "graduates": "Bitiruvchilar",
+    "teachers": "O‘qituvchilar",
+    "videos": "Videolar",
+    "faq": "FAQ",
+    "contact": "Kontakt"
+  },
+  "contact": {
+    "phone": ["+998 90 035 27 27", "+998 78 113 78 01"],
+    "email": "ithouseedu@gmail.com",
+    "address": "Toshkent, Uchtepa tumani, OAZIS savdo markazi, 2-qavat",
+    "social": [
+      { "name": "Telegram", "link": "https://t.me/ithouse_edu/" },
+      { "name": "Instagram", "link": "https://www.instagram.com/ithouse_edu/" },
+      {
+        "name": "YouTube",
+        "link": "https://youtu.be/9bGpGeH8zrw?si=kZL_XjagoVZ5QG-r"
+      }
+    ]
+  },
+  "courses": {
+    "title": "Bizning Kurslar",
+    "subtitle": "O'z kelajak kasbingizni Tanlang!",
+    "description": "Real loyihalar asosida sohani o'rganing va bozorda talabgir mutaxasisga aylaning!",
+    "more": "Batafsil ma'lumot",
+    "cta": "Bepul Maslahat Olish",
+    "duration": "oy",
+    "students": "talabalar"
+  },
+  "faq": {
+    "title": "Ko'p Beriladigan Savollar",
+    "subtitle": "Savol-Javoblar",
+    "items": [
+      {
+        "question": "Meni hech qanday IT sohasida bilimim yo'q, 0 boshlasam bo'ladimi?",
+        "answer": "Albatta! Bizning kurslar mutlaqo noldan boshlanadi. Hech qanday oldindan bilim talab qilinmaydi."
+      },
+      {
+        "question": "Kurslar qancha davom etadi?",
+        "answer": "Davomiyligi kursga qarab o'zgaradi - 2 oydan 12 oygacha. Masalan: Foundation kursimiz - 2 oy davom etadi, Full Stack kursimiz - 12 oy."
+      },
+      {
+        "question": "Bo'lib-bo'lib to'lash imkoniyati mavjudmi?",
+        "answer": "Ha albatta! Kurs davomida oyma-oy bo'lib to'lash imkoni mavjud"
+      },
+      {
+        "question": "Ish topishga yordam berasizlarmi?",
+        "answer": "Ha, CV tayyorlash, interview tayyorgarlik va ishga joylashishda to'liq yordam beramiz."
+      },
+      {
+        "question": "Online yoki offline?",
+        "answer": "Ikkalasi ham mavjud. Siz o'zingizga qulay formatni tanlashingiz mumkin."
+      },
+      {
+        "question": "Sertifikat beriladimi?",
+        "answer": "Ha, davlat tomonidan tan olingan rasmiy sertifikat beriladi."
+      }
+    ]
+  },
+  "forWho": {
+    "badge": "Kurslarimiz Kimlar Uchun?",
+    "title1": "Kelajagini qurishga",
+    "title2": "ishtiyoqi borlar uchun!",
+    "description": "Yoshingiz va tajribangiz muhim emas — hammasini 0 o'rgatamiz"
+  },
+  "graduates": {
+    "badge": "Bizning Yutuqlarimiz",
+    "title_suffix": "o'quvchilar IT sohasida o'z kelajagini qurishmoqda",
+    "description": "Bizning o'quvchilar nafaqat ishga joylashishadi, balki o'z kompaniyalariga ham asos solishadi",
+    "stat1": "3 oyda ishga joylashish",
+    "stat2": "O'rtacha boshlang'ich maosh",
+    "stat3": "Muvaffaqiyatli bitiruvchilar",
+    "stat4": "Hamkor kompaniyalar",
+    "companies_title": "Bitiruvchilarimiz Ishlaydigan Kompaniyalar",
+    "workers": "bitiruvchi",
+    "cta_title": "Siz ham ular qatoriga qo'shiling!",
+    "cta_sub": "Kelajakdagi professional IT mutaxassisga aylaning va dunyoning yirik kompaniyalarida ishlang!",
+    "cta_btn": "Ro'yxatdan O'tish"
+  },
+  "news": {
+    "latest": "So'nggi",
+    "news": "Yangiliklar",
+    "subtitle": "IT HOUSE markazi hayotidan eng so‘nggi yangiliklar bilan tanishing",
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik yuz berdi",
+    "empty": "Hozircha yangiliklar mavjud emas",
+    "readMore": "Batafsil o'qish",
+    "invalidId": "Yangilik ID topilmadi",
+    "noStatus": "Status yo‘q",
+    "shareText": "Bu yangiliklarni ulashing",
+    "shareBtn": "Ulashish"
+  },
+  "teachers": {
+    "badge": "Bizning Jamoamiz",
+    "title1": "Professional",
+    "title2": " O'qituvchilar",
+    "description": "Ko'p yillik tajribaga ega va ko'plab yirik loyihalar bilan ishlagan mutaxassislarimizdan ta'lim olasiz!",
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik yuz berdi"
+  },
+  "videos": {
+    "badge": "Bepul Video Darslar",
+    "title": "YouTube Kanalimizda {count}+ Video",
+    "description": "14K+ obunachilar • 700k+ ko'rishlar • Har kuni yangi darslar",
+    "button": "YouTube Kanalga Obuna Bo'lish"
+  },
+  "whyus": {
+    "badge": "Nima Uchun IT_HOUSE?",
+    "title": "Afzalliklarimiz"
+  },
+  "teacherDetail": {
+    "bio": "Biografiya",
+    "skills": "Ko'nikmalar",
+    "achievements": "Yutuqlar",
+    "experience": "Tajriba",
+    "company": "Kompaniya",
+    "students": "O'quvchilar",
+    "year": "yil"
+  },
+  "courseDetail": {
+    "more": "Batafsil",
+    "price": "Kurs narxi",
+    "modules": "Kurs modullari",
+    "technologies": "O‘rganiladigan texnologiyalar"
+  }
+}

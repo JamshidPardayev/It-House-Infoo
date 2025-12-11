@@ -1,9 +1,12 @@
 import { motion } from "motion/react";
 import { Youtube } from "lucide-react";
+import { useLanguage } from "../../context/LangContext";
 
 const videoList = ["AeLA-3n3o_M", "QVnLiqDZYeE", "ECj-H1b1IrA", "Q6MVX_ytfpY"];
 
 export function Videos() {
+  const { t } = useLanguage(); // 3 til uchun hook
+
   return (
     <section
       id="videos"
@@ -24,14 +27,14 @@ export function Videos() {
             className="inline-flex items-center gap-3 bg-red-600/20 border border-red-600/30 px-6 py-3 rounded-full mb-6"
           >
             <Youtube className="w-5 h-5 text-red-500" />
-            <span className="text-red-500">Bepul Video Darslar</span>
+            <span className="text-red-500">{t.videos.badge}</span>
           </motion.div>
 
           <h2 className="text-black dark:text-white text-3xl sm:text-4xl font-bold mb-4">
-            YouTube Kanalimizda <span className="text-red-600">700+</span> Video
+            {t.videos.title.replace("{count}", "700")}
           </h2>
           <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto mb-8">
-            14K+ obunachilar • 700k+ ko'rishlar • Har kuni yangi darslar
+            {t.videos.description}
           </p>
 
           <motion.a
@@ -43,7 +46,7 @@ export function Videos() {
             className="inline-flex items-center gap-3 bg-red-600 text-white px-10 py-4 rounded-xl hover:bg-red-700 transition-all shadow-xl shadow-red-600/30"
           >
             <Youtube className="w-6 h-6" />
-            YouTube Kanalga Obuna Bo'lish
+            {t.videos.button}
           </motion.a>
         </motion.div>
 

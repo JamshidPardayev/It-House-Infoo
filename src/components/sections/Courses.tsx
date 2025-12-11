@@ -6,9 +6,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
+import { useLang } from "../../context/LangContext";
 
 export function Courses() {
   const { data, isLoading, isError } = useCourses();
+  const { t, getText } = useLang();
 
   if (isLoading)
     return (
@@ -40,7 +42,7 @@ export function Courses() {
   return (
     <section
       id="courses"
-      className="pt-32 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
+      className="pt-32 pb-10 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -51,14 +53,14 @@ export function Courses() {
           className="text-center mb-20"
         >
           <div className="inline-block bg-red-600/20 border border-red-600/30 px-6 py-3 rounded-full mb-6">
-            <span className="text-red-500 font-medium">Bizning Kurslar</span>
+            <span className="text-red-500 font-medium">{t.courses.title}</span>
           </div>
 
           <h2 className="text-black dark:text-white mb-6 text-4xl font-bold max-sm:text-3xl">
-            O'z kelajak <span className="text-red-600"> kasbingizni</span> Tanlang!
+            {t.courses.subtitle.split(" ")[0]} <span className="text-red-600">{t.courses.subtitle.split(" ")[1]}</span> {t.courses.subtitle.split(" ").slice(2).join(" ")}
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Real loyihalar asosida sohani o'rganing va bozorda talabgir mutaxasisga aylaning!
+            {t.courses.description}
           </p>
         </motion.div>
       </div>
@@ -94,7 +96,7 @@ export function Courses() {
                 <div className="relative h-[250px] overflow-hidden">
                   <ImageWithFallback
                     src={course.banner}
-                    alt={course.title_uz}
+                    alt={getText(course)}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
@@ -110,15 +112,17 @@ export function Courses() {
                     <div className="flex items-center gap-3 mb-4">
                       <div className="bg-gray-200/40 dark:bg-white/10 px-4 py-2 rounded-lg flex items-center gap-2">
                         <Clock className="w-4 h-4 text-red-500" />
-                        <span className="text-gray-700 dark:text-white text-sm font-medium">{course.duration} oy</span>
+                        <span className="text-gray-700 dark:text-white text-sm font-medium">
+                          {course.duration} {t.courses.duration}
+                        </span>
                       </div>
                     </div>
 
                     <h3 className="text-black dark:text-white text-xl font-semibold mb-3 line-clamp-1">
-                      {course.title_uz}
+                      {getText(course)}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300 text-sm mb-6 line-clamp-2">
-                      {course.description_uz}
+                      {getText({ title_uz: course.description_uz, title_ru: course.description_ru, title_en: course.description_en })}
                     </p>
 
                     {/* Technologies */}
@@ -129,9 +133,9 @@ export function Courses() {
                           className="flex items-center gap-2 px-3 py-1.5 bg-white/70 dark:bg-gray-800/80 rounded-lg text-sm border border-gray-200 dark:border-gray-700"
                         >
                           <div className="w-[25px] h-[25px] rounded-[3px] overflow-hidden">
-                            <img src={tech.icon} alt={tech.name_uz} className="w-full h-full object-cover" />
+                            <img src={tech.icon} alt={getText(tech)} className="w-full h-full object-cover" />
                           </div>
-                          <p className="text-gray-800 dark:text-gray-200">{tech.name_uz}</p>
+                          <p className="text-gray-800 dark:text-gray-200">{getText(tech)}</p>
                         </span>
                       ))}
                     </div>
@@ -142,7 +146,7 @@ export function Courses() {
                       whileHover={{ x: 5 }}
                       className="text-red-500 hover:text-red-400 flex items-center gap-2 group/btn"
                     >
-                      Batafsil ma'lumot
+                      {t.courses.more}
                       <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
                     </motion.button>
                   </div>
@@ -166,7 +170,7 @@ export function Courses() {
           onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           className="bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-4 rounded-xl hover:from-red-700 hover:to-red-800 transition-all shadow-xl shadow-red-600/30"
         >
-          Bepul Maslahat Olish
+          {t.courses.cta}
         </motion.button>
       </motion.div>
     </section>

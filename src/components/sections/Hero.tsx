@@ -1,9 +1,11 @@
 import { motion } from "motion/react";
 import { ArrowRight, Play, Star } from "lucide-react";
 import { useStatistics } from "../../api/hooks/useStatistics";
+import { useLang } from "../../context/LangContext";
 
 export function Hero() {
   const { data, isLoading, isError } = useStatistics();
+  const { t } = useLang();
 
   if (isLoading)
     return (
@@ -16,7 +18,7 @@ export function Hero() {
     return (
       <div className="absolute inset-0 flex items-center justify-center z-[-100]">
         <p className="text-[20px] font-semibold text-red-500">
-          Xatolik yuz berdi!
+          {t?.hero?.error || "Xatolik yuz berdi!"}
         </p>
       </div>
     );
@@ -32,27 +34,13 @@ export function Hero() {
       {/* Gradient Orbs */}
       <motion.div
         className="absolute top-20 right-0 w-[600px] h-[600px] bg-red-600/10 dark:bg-red-600/20 rounded-full blur-[120px]"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px]"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* Content */}
@@ -66,7 +54,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-600/20 to-purple-600/20 border border-red-600/30 px-6 py-3 rounded-full mb-8 backdrop-blur-sm">
             <Star className="w-5 h-5 text-red-500 fill-red-500" />
             <span className="text-gray-900 dark:text-white">
-              IT HOUSE - kelajak shu yerda
+              {t.hero.badge}
             </span>
             <Star className="w-5 h-5 text-red-500 fill-red-500" />
           </div>
@@ -78,12 +66,11 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-gray-900 dark:text-white mb-8 leading-tight"
         >
-          Zamonaviy
+          {t.hero.title1}{" "}
           <span className="bg-gradient-to-r from-red-600 via-red-500 to-purple-600 bg-clip-text text-transparent">
-            {" "}
-            kasblarni 0 dan{" "}
-          </span>
-          o'rgatamiz
+            {t.hero.title2}
+          </span>{" "}
+          {t.hero.title3}
         </motion.h1>
 
         <motion.p
@@ -92,13 +79,9 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-gray-600 dark:text-gray-300 text-xl max-w-3xl mx-auto mb-12 leading-relaxed"
         >
-          IT HOUSE - barchasi amalga oshadigan maskan, yangi IT kasb ham, yangi
-          kelajak ham
-          <br />
-          <span className="text-red-500">
-            {data?.total_students}+ bitiruvchi
-          </span>{" "}
-          • <span className="text-green-500">10+ IT kasblar</span>
+          {t.hero.description} <br />
+          <span className="text-red-500">{data?.total_students}+ </span>
+          {t.hero.students} • <span className="text-green-500">10+ IT</span>
         </motion.p>
 
         <motion.div
@@ -117,7 +100,7 @@ export function Hero() {
             }
             className="bg-gradient-to-r from-red-600 to-red-700 text-white px-12 py-5 rounded-xl hover:from-red-700 hover:to-red-800 transition-all flex items-center gap-3 group shadow-2xl shadow-red-600/50 text-lg cursor-pointer"
           >
-            Bepul Konsultatsiya
+            {t.hero.btn_consult}
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </motion.button>
 
@@ -132,7 +115,7 @@ export function Hero() {
             className="bg-gray-100 dark:bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white px-12 py-5 rounded-xl hover:bg-gray-200 dark:hover:bg-white/20 transition-all border border-gray-300 dark:border-white/20 flex items-center gap-3 text-lg cursor-pointer"
           >
             <Play className="w-6 h-6" />
-            Kurslarni Ko'rish
+            {t.hero.btn_courses}
           </motion.button>
         </motion.div>
 
@@ -146,22 +129,22 @@ export function Hero() {
           {[
             {
               value: data?.total_students + "+",
-              label: "O'quvchilar",
+              label: t.hero.students,
               color: "text-blue-500",
             },
             {
               value: data?.total_graduates + "+",
-              label: "Bitiruvchilar",
+              label: t.hero.graduates,
               color: "text-green-500",
             },
             {
               value: data?.total_employed + "%",
-              label: "Ishga joylashish",
+              label: t.hero.employed,
               color: "text-purple-500",
             },
             {
               value: data?.avg_duration + " oy",
-              label: "O'rtacha o'qish muddat",
+              label: t.hero.duration,
               color: "text-red-500",
             },
           ].map((stat, index) => (

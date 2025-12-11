@@ -5,27 +5,29 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { useStatus } from "../../api/hooks/useStatus";
+import { useLang } from "../../context/LangContext";
 
 export const News = () => {
   const { data, isLoading, isError } = useNews();
-  const { data: statusData } = useStatus(); // ✅ to'g'rilandi!
+  const { data: statusData } = useStatus();
+  const { getText, t } = useLang();
 
   if (isLoading)
     return (
-      <div className="flex justify-center py-20 z-[-100]">Yuklanmoqda...</div>
+      <div className="flex justify-center py-20 z-[-100]">{t.news.loading}</div>
     );
 
   if (isError)
     return (
       <div className="flex justify-center py-20 text-red-500 z-[-100]">
-        Xatolik yuz berdi
+        {t.news.error}
       </div>
     );
 
   if (!data || data.length === 0)
     return (
       <div className="flex justify-center py-20 text-gray-500 z-[-100]">
-        Hozircha yangiliklar mavjud emas
+        {t.news.empty}
       </div>
     );
 
@@ -33,12 +35,10 @@ export const News = () => {
     <section className="py-20 bg-gradient-to-b from-gray-100 dark:from-black to-white dark:to-gray-900">
       <div className="max-w-7xl mx-auto px-4 text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          So'nggi <span className="text-orange-600">Yangiliklar</span>
+          <span className="text-black dark:text-white">{t.news.latest}</span>{" "}
+          <span className="text-orange-600">{t.news.news}</span>
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          IT_HOUSE markazi va o'quvchilar hayotidan eng so'nggi yangiliklardan
-          xabardor bo'ling
-        </p>
+        <p className="text-gray-600 max-w-2xl mx-auto">{t.news.subtitle}</p>
       </div>
 
       <Swiper
@@ -58,22 +58,20 @@ export const News = () => {
         }}
       >
         {data.map((news) => {
-          // 🔥 STATUS TOPISH FUNKSIYASI
+          // 🔥 STATUS
           const statusName = (() => {
-            if (!statusData) return "No status";
+            if (!statusData) return t.news.noStatus;
 
-            // Agar news.status — object bo'lsa
             if (typeof news.status === "object" && news.status !== null) {
-              return news.status.name_uz || "No status";
+              return getText(news.status);
             }
 
-            // Agar news.status — ID bo'lsa (raqam)
             if (typeof news.status === "number") {
               const found = statusData.find((s) => s.id === news.status);
-              return found?.name_uz || "No status";
+              return found ? getText(found) : t.news.noStatus;
             }
 
-            return "No status";
+            return t.news.noStatus;
           })();
 
           return (
@@ -81,13 +79,17 @@ export const News = () => {
               <motion.div
                 className="bg-white dark:bg-white/10 rounded-2xl overflow-hidden shadow-lg cursor-pointer"
                 onClick={() =>
-                  window.open(`/news/${news.id}`, "_blank", "noopener,noreferrer")
+                  window.open(
+                    `/news/${news.id}`,
+                    "_blank",
+                    "noopener,noreferrer"
+                  )
                 }
               >
                 <div className="relative h-56 overflow-hidden">
                   <img
                     src={news.banner}
-                    alt={news.title_uz}
+                    alt={getText(news)}
                     className="w-full h-full object-cover hover:scale-105 duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
@@ -107,10 +109,14 @@ export const News = () => {
                 <div className="py-4 px-8 flex flex-col justify-between h-[200px]">
                   <div>
                     <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white line-clamp-1">
-                      {news.title_uz}
+                      {getText(news)}
                     </h3>
                     <p className="text-gray-500 dark:text-gray-300 text-sm line-clamp-2">
-                      {news.description_uz}
+                      {getText({
+                        description_uz: news.description_uz,
+                        description_ru: news.description_ru,
+                        description_en: news.description_en,
+                      })}
                     </p>
                   </div>
 
@@ -125,7 +131,7 @@ export const News = () => {
                       )
                     }
                   >
-                    Batafsil o'qish
+                    {t.news.readMore}
                     <ArrowRight className="w-4 h-4" />
                   </motion.button>
                 </div>

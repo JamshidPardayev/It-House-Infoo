@@ -1,10 +1,10 @@
-// components/sections/Teachers.tsx
 import { motion } from "motion/react";
 import { useTeachers } from "../../api/hooks/useTeachers";
 import { Github, Linkedin } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import { useLanguage } from "../../context/LangContext";
 
 type Teacher = {
   id: number;
@@ -19,12 +19,14 @@ type Teacher = {
 
 export function Teachers() {
   const { data, isLoading, isError } = useTeachers();
+  const { t } = useLanguage(); // LOCALIZATION
+console.log(data);
 
   if (isLoading)
     return (
       <div className="absolute inset-0 flex items-center justify-center z-[-100]">
         <span className="text-gray-700 dark:text-gray-300 text-lg">
-          Yuklanmoqda...
+          {t.teachers.loading}
         </span>
       </div>
     );
@@ -32,7 +34,7 @@ export function Teachers() {
   if (isError)
     return (
       <div className="absolute inset-0 flex items-center justify-center z-[-100]">
-        <span className="text-red-500 text-lg">Xatolik yuz berdi</span>
+        <span className="text-red-500 text-lg">{t.global.error}</span>
       </div>
     );
 
@@ -55,25 +57,24 @@ export function Teachers() {
             viewport={{ once: true }}
             className="inline-block bg-red-600/20 border border-red-600/30 px-6 py-3 rounded-full mb-6"
           >
-            <span className="text-red-500">Bizning Jamoamiz</span>
+            <span className="text-red-500">{t.teachers.badge}</span>
           </motion.div>
+
           <h2 className="text-black dark:text-white mb-6">
-            Professional <span className="text-red-600">O'qituvchilar</span>
+            {t.teachers.title1}
+            <span className="text-red-600">{t.teachers.title2}</span>
           </h2>
+
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Ko'p yillik tajribaga ega va ko'plab yirik loyihalar bilan ishlagan
-            mutaxasislarimizdan ta'lim olasiz!
+            {t.teachers.description}
           </p>
         </motion.div>
 
-        {/* Swiper Section */}
+        {/* Swiper */}
         <Swiper
           modules={[Autoplay]}
           loop={true}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-          }}
+          autoplay={{ delay: 0, disableOnInteraction: false }}
           speed={15000}
           slidesPerView={3}
           spaceBetween={32}
@@ -103,16 +104,16 @@ export function Teachers() {
                 }
                 className="group bg-gradient-to-br from-gray-300 to-gray-500/5 dark:from-white/5 dark:to-white/10 backdrop-blur-sm border border-gray-400/40 dark:border-white/10 rounded-3xl overflow-hidden hover:border-red-600/30 transition-all cursor-pointer"
               >
-                {/* Rasm qismi */}
+                {/* Image */}
                 <div className="relative h-[350px] overflow-hidden">
                   <img
                     src={teacher.photo}
                     alt={teacher.full_name}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-125 group-hover:shadow-[0_0_25px_8px_rgba(255,0,0,0.5)]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
 
-                  {/* Ijtimoiy tarmoqlar */}
+                  {/* Social links */}
                   <div className="absolute bottom-4 left-4 right-4 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {teacher.linkedin_link && (
                       <motion.a
@@ -139,7 +140,7 @@ export function Teachers() {
                   </div>
                 </div>
 
-                {/* Matn qismi */}
+                {/* Text */}
                 <div className="p-6 bg-gray-100 dark:bg-black/10">
                   <h3 className="dark:text-white mb-1">{teacher.full_name}</h3>
                   <p className="text-red-500 mb-2 text-sm">
@@ -147,7 +148,7 @@ export function Teachers() {
                   </p>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600 dark:text-gray-300">
-                      {teacher.experience}+ yil
+                      {teacher.experience}+ {t.teachers.years}
                     </span>
                     <span className="text-gray-600 dark:text-gray-300">
                       @ {teacher.company}
