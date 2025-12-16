@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Contact } from "./Contact";
 import { useCourseDetail } from "../../api/hooks/useCourseDetail";
 import { useLang } from "../../context/LangContext";
+import { Navigation } from "../Navigation";
 
 export default function CourseDetail() {
   const { id } = useParams();
@@ -19,9 +20,12 @@ export default function CourseDetail() {
     document.documentElement.classList.contains("dark")
   );
 
+  // Modules dropdown state
+  const [openModuleId, setOpenModuleId] = useState<number | null>(null);
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
-    const root = window.document.documentElement;
+    const root = document.documentElement;
     if (savedTheme === "dark") root.classList.add("dark");
     else root.classList.remove("dark");
     setIsDark(savedTheme === "dark");
@@ -29,6 +33,7 @@ export default function CourseDetail() {
     const handleThemeChange = () => {
       setIsDark(document.documentElement.classList.contains("dark"));
     };
+
     window.addEventListener("theme-changed", handleThemeChange);
     return () => window.removeEventListener("theme-changed", handleThemeChange);
   }, []);
@@ -64,10 +69,11 @@ export default function CourseDetail() {
       >
         <div className="max-w-6xl mx-auto">
           {/* Banner */}
+          <Navigation />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="relative rounded-2xl overflow-hidden shadow-xl mb-12"
+            className="relative rounded-2xl overflow-hidden shadow-xl mb-12 mt-4"
           >
             <ImageWithFallback
               src={course.banner}
@@ -78,19 +84,20 @@ export default function CourseDetail() {
 
             <div className="absolute bottom-6 left-6 text-white">
               <h1 className="text-4xl font-bold mb-3">{getText(course)}</h1>
+
               <div className="flex gap-4 items-center text-sm">
-                <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
-                  <Clock className="w-4 h-4 text-red-500" /> {course.duration}{" "}
-                  {t.courses.duration}
+                <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-lg">
+                  <Clock className="w-4 h-4 text-red-500" />
+                  {course.duration} {t.courses.duration}
                 </span>
 
-                <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
-                  <Users className="w-4 h-4 text-red-500" /> {course.students}{" "}
-                  {t.courses.students}
+                <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-lg">
+                  <Users className="w-4 h-4 text-red-500" />
+                  {course.students} {t.courses.students}
                 </span>
 
-                <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-[8px]">
-                  <BookOpen className="w-4 h-4 text-red-500" />{" "}
+                <span className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-lg">
+                  <BookOpen className="w-4 h-4 text-red-500" />
                   {course.modules?.length || 0} modul
                 </span>
               </div>
@@ -127,25 +134,24 @@ export default function CourseDetail() {
               }`}
             >
               <h2 className="text-2xl font-semibold mb-6">
-                {t?.courses?.technologies}
+                {t.courses.technologies}
               </h2>
+
               <div className="flex flex-wrap gap-4">
                 {course.technologies.map((tech) => (
                   <div
                     key={tech.id}
                     className={`flex items-center gap-3 px-4 py-2 rounded-lg border ${
                       isDark
-                        ? "bg-gray-700 border-gray-600 text-white"
-                        : "bg-gray-100 border-gray-300 text-gray-800"
+                        ? "bg-gray-700 border-gray-600"
+                        : "bg-gray-100 border-gray-300"
                     }`}
                   >
-                    <div className="w-[30px] h-[30px] overflow-hidden rounded">
-                      <img
-                        src={tech.icon}
-                        alt={getText(tech)}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <img
+                      src={tech.icon}
+                      alt={getText(tech)}
+                      className="w-8 h-8 rounded object-cover"
+                    />
                     <span>{getText(tech)}</span>
                   </div>
                 ))}
@@ -153,7 +159,7 @@ export default function CourseDetail() {
             </motion.div>
           )}
 
-          {/* Modules */}
+          {/* MODULES – DROPDOWN */}
           {course.modules?.length > 0 && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -163,33 +169,67 @@ export default function CourseDetail() {
                 isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"
               }`}
             >
-              <h2 className="text-2xl font-semibold mb-6">{t?.courses?.modules}</h2>
+              <h2 className="text-2xl font-semibold mb-6">
+                {t.courses.modules}
+              </h2>
+
               <div className="flex flex-col gap-4">
-                {course.modules.map((mod) => (
-                  <div
-                    key={mod.id}
-                    className={`border rounded-xl p-4 ${
-                      isDark ? "border-gray-600" : "border-gray-300"
-                    }`}
-                  >
-                    <h3 className="text-xl font-semibold text-red-600 mb-2">
-                      {getText(mod)}
-                    </h3>
-                    {mod.themes?.length ? (
-                      <ul>
-                        {mod.themes.map((theme: any) => (
-                          <li
-                            key={theme.id}
-                            className="flex items-center gap-2 mt-2"
-                          >
-                            <BadgeCheck className="text-green-500" />
-                            {getText(theme)}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </div>
-                ))}
+                {course.modules.map((mod) => {
+                  const isOpen = openModuleId === mod.id;
+
+                  return (
+                    <div
+                      key={mod.id}
+                      className={`border rounded-xl ${
+                        isDark ? "border-gray-600" : "border-gray-300"
+                      }`}
+                    >
+                      {/* Header */}
+                      <button
+                        onClick={() => setOpenModuleId(isOpen ? null : mod.id)}
+                        className="w-full flex justify-between items-center p-4 text-left"
+                      >
+                        <h3 className="text-lg font-semibold text-red-600">
+                          {getText(mod)}
+                        </h3>
+
+                        <motion.span
+                          animate={{
+                            rotate: isOpen ? 180 : 0,
+                          }}
+                          className="text-xl"
+                        >
+                          ▼
+                        </motion.span>
+                      </button>
+
+                      {/* Content */}
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          height: isOpen ? "auto" : 0,
+                          opacity: isOpen ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden px-4"
+                      >
+                        {mod.themes?.length > 0 && (
+                          <ul className="pb-4">
+                            {mod.themes.map((theme: any) => (
+                              <li
+                                key={theme.id}
+                                className="flex items-center gap-2 mt-2"
+                              >
+                                <BadgeCheck className="text-green-500" />
+                                {getText(theme)}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </motion.div>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
           )}

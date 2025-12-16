@@ -111,7 +111,7 @@ console.log(data);
                     alt={teacher.full_name}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-125 group-hover:shadow-[0_0_25px_8px_rgba(255,0,0,0.5)]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" /> */}
 
                   {/* Social links */}
                   <div className="absolute bottom-4 left-4 right-4 flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

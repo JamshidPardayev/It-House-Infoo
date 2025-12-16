@@ -140,11 +140,11 @@ export function Graduates() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-black dark:text-white text-center mb-12">
+          {/* <h3 className="text-black dark:text-white text-center mb-12">
             {t.graduates.companies_title}
-          </h3>
+          </h3> */}
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {companiesData?.map((company: any, index: number) => (
               <motion.div
                 key={index}
@@ -166,7 +166,7 @@ export function Graduates() {
                 </p>
               </motion.div>
             ))}
-          </div>
+          </div> */}
         </motion.div>
 
         {/* CTA */}
