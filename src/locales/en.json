@@ -30,7 +30,7 @@
       { "name": "Instagram", "link": "https://www.instagram.com/ithouse_edu/" },
       {
         "name": "YouTube",
-        "link": "https://youtu.be/9bGpGeH8zrw?si=kZL_XjagoVZ5QG-r"
+        "link": "https://www.youtube.com/watch?v=QVnLiqDZYeE"
       }
     ]
   },
@@ -40,8 +40,11 @@
     "description": "Learn the field based on real projects and become a sought-after specialist!",
     "more": "More info",
     "cta": "Get Free Consultation",
-    "duration": "mo",
-    "students": "students"
+    "duration": "month",
+    "students": "students",
+    "price": "Course Price",
+    "modules": "Course Modules",
+    "technologies": "Technologies to Learn"
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -142,11 +145,5 @@
     "company": "Company",
     "students": "Students",
     "year": "years"
-  },
-  "courseDetail": {
-    "more": "More",
-    "price": "Course Price",
-    "modules": "Course Modules",
-    "technologies": "Technologies to Learn"
   }
 }

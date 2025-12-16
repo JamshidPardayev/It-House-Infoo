@@ -48,8 +48,8 @@ export function Contact() {
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
             className="inline-block bg-blue-600/20 border border-blue-600/30 px-6 py-3 rounded-full mb-6"
+            viewport={{ once: true }}
           >
             <span className="text-blue-500">{t.menu?.contact}</span>
           </motion.div>

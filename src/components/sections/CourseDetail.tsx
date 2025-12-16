@@ -114,13 +114,6 @@ export default function CourseDetail() {
                 title_en: course.description_en,
               })}
             </p>
-
-            <span className="flex items-center gap-3 mt-2">
-              <strong>Kurs narxi: </strong>
-              <p className="text-[#ee2222] text-[22px] font-bold">
-                {course.price} so'm
-              </p>
-            </span>
           </motion.div>
 
           {/* Technologies */}
@@ -134,7 +127,7 @@ export default function CourseDetail() {
               }`}
             >
               <h2 className="text-2xl font-semibold mb-6">
-                O‘rganiladigan texnologiyalar
+                {t?.courses?.technologies}
               </h2>
               <div className="flex flex-wrap gap-4">
                 {course.technologies.map((tech) => (
@@ -170,7 +163,7 @@ export default function CourseDetail() {
                 isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"
               }`}
             >
-              <h2 className="text-2xl font-semibold mb-6">Kurs modullari:</h2>
+              <h2 className="text-2xl font-semibold mb-6">{t?.courses?.modules}</h2>
               <div className="flex flex-col gap-4">
                 {course.modules.map((mod) => (
                   <div
