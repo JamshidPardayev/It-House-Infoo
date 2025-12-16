@@ -38,6 +38,15 @@ export default function CourseDetail() {
     return () => window.removeEventListener("theme-changed", handleThemeChange);
   }, []);
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   useEffect(() => {
     if (course) document.title = getText(course);
   }, [course]);
@@ -69,7 +78,7 @@ export default function CourseDetail() {
       >
         <div className="max-w-6xl mx-auto">
           {/* Banner */}
-          <Navigation />
+          <Navigation scrolled={scrolled} />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
