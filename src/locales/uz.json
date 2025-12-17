@@ -41,7 +41,10 @@
     "more": "Batafsil ma'lumot",
     "cta": "Bepul Maslahat Olish",
     "duration": "oy",
-    "students": "talabalar"
+    "students": "talabalar",
+    "price": "Kurs narxi",
+    "modules": "Kurs modullari",
+    "technologies": "O‘rganiladigan texnologiyalar"
   },
   "faq": {
     "title": "Ko'p Beriladigan Savollar",
@@ -115,7 +118,7 @@
     "error": "Xatolik yuz berdi"
   },
   "videos": {
-    "badge": "Bepul Video Darslar",
+    "badge": "Foydali Video Darslar",
     "title": "YouTube Kanalimizda {count}+ Video",
     "description": "14K+ obunachilar • 700k+ ko'rishlar • Har kuni yangi darslar",
     "button": "YouTube Kanalga Obuna Bo'lish"
@@ -132,11 +135,5 @@
     "company": "Kompaniya",
     "students": "O'quvchilar",
     "year": "yil"
-  },
-  "courseDetail": {
-    "more": "Batafsil",
-    "price": "Kurs narxi",
-    "modules": "Kurs modullari",
-    "technologies": "O‘rganiladigan texnologiyalar"
   }
 }
