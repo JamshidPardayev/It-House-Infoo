@@ -38,7 +38,7 @@ export function Videos() {
           </p>
 
           <motion.a
-            href="https://youtube.com/@ithouse"
+            href="https://www.youtube.com/@ithouse_edu"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
